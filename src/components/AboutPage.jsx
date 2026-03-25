@@ -36,7 +36,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="prose prose-lg max-w-none"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-12">{t.about.title}</h2>
+            <h1 className="text-5xl font-bold text-gray-900 mb-12">{t.about.title}</h1>
             {t.about.paragraphs.map((paragraph, index) => (
               <p key={index} className="text-white mb-4">
                 {paragraph}

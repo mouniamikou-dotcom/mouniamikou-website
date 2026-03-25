@@ -37,9 +37,9 @@ export default function Values() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-3xl font-bold text-[#039B9B] px-8 py-4">
+          <h2 className="text-3xl font-bold text-[#039B9B] px-8 py-4">
             {t.values.title}
-          </h1>
+          </h2>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

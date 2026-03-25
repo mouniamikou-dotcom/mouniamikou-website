@@ -10,6 +10,20 @@ const nextConfig = {
           },
         ],
       },
+    async redirects() {
+      return [
+        {
+          source: '/Realestate',
+          destination: '/real-estate',
+          permanent: true,
+        },
+        {
+          source: '/installationportugal',
+          destination: '/settling-in-portugal',
+          permanent: true,
+        },
+      ];
+    },
 }
 
 module.exports = nextConfig
