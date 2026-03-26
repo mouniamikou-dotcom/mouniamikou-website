@@ -22,6 +22,11 @@ const nextConfig = {
           destination: '/settling-in-portugal',
           permanent: true,
         },
+        {
+          source: '/business',
+          destination: '/business-creation-portugal',
+          permanent: true,
+        },
       ];
     },
 }
