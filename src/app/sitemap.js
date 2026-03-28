@@ -1,4 +1,13 @@
-export default function sitemap() {
+import { createClient } from 'next-sanity';
+
+const client = createClient({
+  projectId: 'bfaunxy0',
+  dataset: 'production',
+  apiVersion: '2024-01-01',
+  useCdn: false,
+});
+
+export default async function sitemap() {
   const baseUrl = 'https://mouniamikou.com';
 
   const pages = [
@@ -11,10 +20,23 @@ export default function sitemap() {
     { url: '/blogs', priority: 0.8, changeFrequency: 'weekly' },
   ];
 
-  return pages.map(({ url, priority, changeFrequency }) => ({
+  const staticPages = pages.map(({ url, priority, changeFrequency }) => ({
     url: `${baseUrl}${url}`,
     lastModified: new Date(),
     changeFrequency,
     priority,
   }));
+
+  const posts = await client.fetch(
+    `*[_type == "blogPost"] { "slug": slug.current, publishedAt }`
+  );
+
+  const blogPages = posts.map(({ slug, publishedAt }) => ({
+    url: `${baseUrl}/blogs/${slug}`,
+    lastModified: publishedAt ? new Date(publishedAt) : new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...blogPages];
 }
