@@ -69,6 +69,16 @@ export default {
       description: "A brief summary of the blog post (for SEO and previews).",
     },
     {
+      name: "excerpt",
+      title: "Meta Description (excerpt)",
+      type: "object",
+      fields: [
+        { name: "en", title: "English", type: "text", validation: (Rule) => Rule.max(160) },
+        { name: "fr", title: "French", type: "text", validation: (Rule) => Rule.max(160) },
+      ],
+      description: "Résumé court pour Google (150-160 caractères max).",
+    },
+    {
       name: "introduction",
       title: "intro",
       type: "object",
