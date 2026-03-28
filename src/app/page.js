@@ -11,7 +11,14 @@ import BlogList from "./blogs/page"
 export const metadata = {
   title: "French Lawyer Portugal | Relocation, Real Estate & Business | Mounia Mikou",
   description: "French-speaking lawyer based in Lisbon. Mounia Mikou guides you through settling in Portugal, real estate investment, and business creation. Book a free discovery call.",
-  alternates: { canonical: "https://mouniamikou.com" },
+  alternates: {
+    canonical: "https://mouniamikou.com",
+    languages: {
+      'en': 'https://mouniamikou.com',
+      'fr': 'https://mouniamikou.com',
+      'x-default': 'https://mouniamikou.com',
+    },
+  },
   openGraph: {
     title: "French Lawyer Portugal | Relocation, Real Estate & Business | Mounia Mikou",
     description: "French-speaking lawyer based in Lisbon. Expert legal support for settling in Portugal, real estate investment, and business creation.",
