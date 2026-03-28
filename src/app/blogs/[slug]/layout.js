@@ -20,7 +20,14 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
-    alternates: { canonical: `https://mouniamikou.com/blogs/${slug}` },
+    alternates: {
+      canonical: `https://mouniamikou.com/blogs/${slug}`,
+      languages: {
+        'en': `https://mouniamikou.com/blogs/${slug}`,
+        'fr': `https://mouniamikou.com/blogs/${slug}`,
+        'x-default': `https://mouniamikou.com/blogs/${slug}`,
+      },
+    },
     openGraph: {
       title,
       description,

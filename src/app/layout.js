@@ -35,6 +35,14 @@ export const metadata = {
     title: "French Lawyer Portugal | Mounia Mikou",
     description: "French-speaking lawyer based in Lisbon. Expert legal support for settling in Portugal, real estate investment, and business creation.",
   },
+  alternates: {
+    canonical: 'https://mouniamikou.com',
+    languages: {
+      'en': 'https://mouniamikou.com',
+      'fr': 'https://mouniamikou.com',
+      'x-default': 'https://mouniamikou.com',
+    },
+  },
   robots: {
     index: true,
     follow: true,
