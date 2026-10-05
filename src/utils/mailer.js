@@ -1,28 +1,24 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-// Create reusable transporter
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com", // replace with your SMTP server
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: "oussamahamdani1@gmail.com", // replace with your email
-    pass: "6UIrLmkCFEabyHtB", // replace with your password
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendEmail(subject, htmlContent, text) {
   try {
-    const info = await transporter.sendMail({
-      from: "<mm@mouniamikou.com>",
-      to: "mm@mouniamikou.com", // replace with recipient email
+    const { data, error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      to: "mm@mouniamikou.com",
       subject: subject,
       text: text,
       html: htmlContent,
     });
 
-    console.log("Message sent: %s", info.messageId);
-    return { success: true, messageId: info.messageId };
+    if (error) {
+      console.error("Error sending email:", error);
+      return { success: false, error: error.message };
+    }
+
+    console.log("Message sent: %s", data.id);
+    return { success: true, messageId: data.id };
   } catch (error) {
     console.error("Error sending email:", error);
     return { success: false, error: error.message };
