@@ -34,3 +34,16 @@ export const getBlogPost = cache(async (slug) => {
   return await client.withConfig({ useCdn: false }).fetch(query, { slug }, { next: { revalidate: 3600 } });
 });
 
+
+export const getBlogPosts = cache(async () => {
+  return client.withConfig({ useCdn: false }).fetch(
+    `*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+      _id, title { en, fr }, slug, category, publishedAt, _updatedAt,
+      mainImage { asset-> { url } },
+      "excerpt": coalesce(excerpt, description),
+      "hasFrench": defined(title.fr) && count(body.fr) > 0
+    }`,
+    {},
+    { next: { revalidate: 3600 } }
+  );
+});
