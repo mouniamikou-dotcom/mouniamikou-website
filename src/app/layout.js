@@ -1,53 +1,10 @@
 
 import "./globals.css";
 
+import { getRequestLanguage } from "@/i18n/server";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-export const metadata = {
-  metadataBase: new URL('https://mouniamikou.com'),
-  title: {
-    default: "French Lawyer Portugal | Relocation, Real Estate & Business | Mounia Mikou",
-    template: "%s | Mounia Mikou",
-  },
-  description: "French-speaking lawyer based in Lisbon. Mounia Mikou guides you through settling in Portugal, real estate investment, and business creation. Book a free discovery call.",
-  keywords: [
-    "French lawyer Portugal",
-    "avocat Portugal",
-    "relocation Portugal",
-    "real estate Portugal",
-    "business creation Portugal",
-    "D7 visa Portugal",
-    "francophone lawyer Lisbon",
-    "expatriation Portugal",
-    "Mounia Mikou",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: "fr_FR",
-    url: "https://mouniamikou.com",
-    siteName: "Mounia Mikou - French Lawyer in Portugal",
-    title: "French Lawyer Portugal | Relocation, Real Estate & Business | Mounia Mikou",
-    description: "French-speaking lawyer based in Lisbon. Expert legal support for settling in Portugal, real estate investment, and business creation.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "French Lawyer Portugal | Mounia Mikou",
-    description: "French-speaking lawyer based in Lisbon. Expert legal support for settling in Portugal, real estate investment, and business creation.",
-  },
-  alternates: {
-    canonical: 'https://mouniamikou.com',
-    languages: {
-      'en': 'https://mouniamikou.com',
-      'fr': 'https://mouniamikou.com',
-      'x-default': 'https://mouniamikou.com',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export { requestMetadata as generateMetadata } from "@/i18n/server";
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -73,18 +30,19 @@ const schemaOrg = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const language = await getRequestLanguage();
   return (
-    <html lang="en">
+    <html lang={language}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
       </head>
-      <LanguageProvider>
-        <body>{children}</body>
-      </LanguageProvider>
+      <body>
+        <LanguageProvider language={language}>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
