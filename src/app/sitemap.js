@@ -1,43 +1,19 @@
-import { createClient } from 'next-sanity';
-
-const client = createClient({
-  projectId: 'bfaunxy0',
-  dataset: 'production',
-  apiVersion: '2024-01-01',
-  useCdn: false,
-});
+import { getBlogPosts } from "@/sanity/lib/blogPost";
+import { localizedPath, pageAlternates, SITE_URL } from "@/i18n/routes";
 
 export const revalidate = 3600;
 
 export default async function sitemap() {
-  const baseUrl = 'https://mouniamikou.com';
-
-  const pages = [
-    { url: '/', priority: 1.0, changeFrequency: 'monthly' },
-    { url: '/about', priority: 0.8, changeFrequency: 'monthly' },
-    { url: '/real-estate', priority: 0.9, changeFrequency: 'monthly' },
-    { url: '/settling-in-portugal', priority: 0.9, changeFrequency: 'monthly' },
-    { url: '/business-creation-portugal', priority: 0.9, changeFrequency: 'monthly' },
-    { url: '/contact', priority: 0.7, changeFrequency: 'yearly' },
-    { url: '/blogs', priority: 0.8, changeFrequency: 'weekly' },
-  ];
-
-  const staticPages = pages.map(({ url, priority, changeFrequency }) => ({
-    url: `${baseUrl}${url}`,
-    changeFrequency,
-    priority,
-  }));
-
-  const posts = await client.fetch(
-    `*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))] { "slug": slug.current, publishedAt, _updatedAt }`
-  );
-
-  const blogPages = posts.map(({ slug, publishedAt, _updatedAt }) => ({
-    url: `${baseUrl}/blogs/${slug}`,
-    lastModified: new Date(_updatedAt || publishedAt),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
-
+  const paths = ["/", "/about", "/real-estate", "/settling-in-portugal", "/business-creation-portugal", "/contact", "/blogs"];
+  const staticPages = paths.flatMap(path => ["en", "fr"].map(language => ({
+    url: SITE_URL + localizedPath(path, language),
+    alternates: { languages: pageAlternates(path, language).languages },
+  })));
+  const posts = await getBlogPosts();
+  const blogPages = posts.flatMap(post => (post.hasFrench ? ["en", "fr"] : ["en"]).map(language => ({
+    url: SITE_URL + localizedPath(`/blogs/${post.slug.current}`, language),
+    lastModified: new Date(post._updatedAt || post.publishedAt),
+    alternates: { languages: pageAlternates(`/blogs/${post.slug.current}`, language, post.hasFrench).languages },
+  })));
   return [...staticPages, ...blogPages];
 }

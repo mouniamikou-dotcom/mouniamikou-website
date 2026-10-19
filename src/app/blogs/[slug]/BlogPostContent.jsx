@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/translations";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import { PortableText } from "@portabletext/react";
 import { urlForImage } from "../../../sanity/lib/image";
 import Image from "next/image";
@@ -123,12 +123,12 @@ const components = {
     link: ({ children, value }) => {
       const isInternal = value?.href?.startsWith("#");
       return (
-        <a
+        <Link
           href={value.href}
           className={`text-blue-600 hover:underline ${isInternal ? "scroll-smooth" : ""}`}
         >
           {children}
-        </a>
+        </Link>
       );
     },
   },

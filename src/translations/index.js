@@ -731,11 +731,11 @@ export const translations = {
         },
         realEstate: {
           title: "Immobilier",
-          description: "Créer mon entreprise au Portugal",
+          description: "Sécuriser mon investissement immobilier",
         },
         business: {
           title: "Entreprise",
-          description: "Sécuriser mon investissement immobilier",
+          description: "Créer mon entreprise au Portugal",
         },
         other: {
           title: "Autres Services",

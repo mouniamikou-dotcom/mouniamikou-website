@@ -1,6 +1,6 @@
 "use client";
 import { MapPin, Mail, Linkedin, Instagram } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations/index";
 import LanguageSelector from "./LanguageSelector";

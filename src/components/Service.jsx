@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Home, Building, Briefcase, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations";
 

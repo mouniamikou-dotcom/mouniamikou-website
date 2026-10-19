@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import LanguageSelector from './LanguageSelector';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from "@/components/LocalizedLink";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
