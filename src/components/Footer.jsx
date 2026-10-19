@@ -11,9 +11,9 @@ export default function Footer() {
 
   const navItems = [
     { label: t.nav.about, href: "/about" },
-    { label: t.nav.installP, href: "/installationportugal" },
-    { label: t.nav.realestate, href: "/Realestate" },
-    { label: t.nav.business, href: "/business" },
+    { label: t.nav.installP, href: "/settling-in-portugal" },
+    { label: t.nav.realestate, href: "/real-estate" },
+    { label: t.nav.business, href: "/business-creation-portugal" },
     { label: t.nav.blogs, href: "/blogs" },
   ];
   return (
@@ -81,7 +81,7 @@ export default function Footer() {
             <p className="text-sm text-gray-300 mt-2 mb-2">
               {t.footer.legalGuidance}
             </p>
-            <Link href="https://calendly.com/mouniamikou/meeting?month=2025-03">
+            <Link href="https://calendly.com/mouniamikou/meeting">
               <button className="mt-4 bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition">
                 🗓 {t.footer.bookConsultation}
               </button>

@@ -21,9 +21,9 @@ export default function Navbar() {
       label: t.nav.services, 
       href: '/',
       submenu: [
-        { label: t.nav.installP, href: '/installationportugal' },
-        { label: t.nav.realestate, href: '/Realestate' },
-        { label: t.nav.business, href: '/business' },
+        { label: t.nav.installP, href: '/settling-in-portugal' },
+        { label: t.nav.realestate, href: '/real-estate' },
+        { label: t.nav.business, href: '/business-creation-portugal' },
       ]
     },
     { label: t.nav.blogs, href: '/blogs' },
