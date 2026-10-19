@@ -1,5 +1,7 @@
 "use client"
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { localizedPath } from '@/i18n/routes';
 import Fra from "../../public/france.png"
 import Eng from "../../public/us_uk_flag_pre.jpg"
 import { useLanguage } from '../context/LanguageContext';
@@ -10,16 +12,15 @@ const languages = {
 };
 
 export default function LanguageSelector() {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  const pathname = usePathname();
   const currentOption = languages[language];
 
-  const handleLanguageSwitch = () => {
-    setLanguage(currentOption.code);
-  };
-
   return (
-    <button 
-      onClick={handleLanguageSwitch}
+    <a
+      href={localizedPath(pathname, currentOption.code)}
+      hrefLang={currentOption.code}
+      aria-label={currentOption.alt}
       className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg transition-colors"
       title={currentOption.alt}
     >
@@ -32,6 +33,6 @@ export default function LanguageSelector() {
           priority
         />
       </div>
-    </button>
+    </a>
   );
 }
