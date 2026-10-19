@@ -1,21 +1,8 @@
-import { cache } from "react";
-import { client } from "@/sanity/lib/client";
-
-const getPost = cache(async (slug) => {
-  return await client.fetch(
-    `*[_type == "blogPost" && slug.current == $slug][0]{
-      title { en, fr },
-      publishedAt,
-      mainImage { asset-> { url } },
-      seo { en { metaTitle, metaDescription }, fr { metaTitle, metaDescription } }
-    }`,
-    { slug }
-  );
-});
+import { getBlogPost } from "@/sanity/lib/blogPost";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = await getBlogPost(slug);
 
   if (!post) return {};
 
@@ -44,7 +31,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogSlugLayout({ children, params }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = await getBlogPost(slug);
 
   const jsonLd = post ? {
     "@context": "https://schema.org",
@@ -52,7 +39,7 @@ export default async function BlogSlugLayout({ children, params }) {
     "headline": post.seo?.en?.metaTitle || post.title?.en,
     "description": post.seo?.en?.metaDescription,
     "datePublished": post.publishedAt,
-    "dateModified": post.publishedAt,
+    "dateModified": post._updatedAt || post.publishedAt,
     "url": `https://mouniamikou.com/blogs/${slug}`,
     "author": {
       "@type": "Person",

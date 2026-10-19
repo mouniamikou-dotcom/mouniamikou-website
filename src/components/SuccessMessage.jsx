@@ -30,7 +30,7 @@ const SuccessMessage = () => {
         {t.success.title}
       </h2>
       <p className="text-gray-600 mb-8">{t.success.message}</p>
-      <Link href="https://calendly.com/mouniamikou/meeting?month=2025-03">
+      <Link href="https://calendly.com/mouniamikou/meeting">
         <button className="mt-4 bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition">
           🗓 {t.success.cta}
         </button>

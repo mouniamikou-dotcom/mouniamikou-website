@@ -7,6 +7,8 @@ const client = createClient({
   useCdn: false,
 });
 
+export const revalidate = 3600;
+
 export default async function sitemap() {
   const baseUrl = 'https://mouniamikou.com';
 
@@ -22,18 +24,17 @@ export default async function sitemap() {
 
   const staticPages = pages.map(({ url, priority, changeFrequency }) => ({
     url: `${baseUrl}${url}`,
-    lastModified: new Date(),
     changeFrequency,
     priority,
   }));
 
   const posts = await client.fetch(
-    `*[_type == "blogPost"] { "slug": slug.current, publishedAt }`
+    `*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))] { "slug": slug.current, publishedAt, _updatedAt }`
   );
 
-  const blogPages = posts.map(({ slug, publishedAt }) => ({
+  const blogPages = posts.map(({ slug, publishedAt, _updatedAt }) => ({
     url: `${baseUrl}/blogs/${slug}`,
-    lastModified: publishedAt ? new Date(publishedAt) : new Date(),
+    lastModified: new Date(_updatedAt || publishedAt),
     changeFrequency: 'monthly',
     priority: 0.7,
   }));

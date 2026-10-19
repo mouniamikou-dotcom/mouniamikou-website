@@ -19,7 +19,7 @@ export default function Services() {
       items: t.services.installation.items,
       image: "/passportPP.jpeg",
       buttonText: t.services.installation.cta,
-      link: "/installationportugal",
+      link: "/settling-in-portugal",
     },
     {
       icon: Building,
@@ -28,7 +28,7 @@ export default function Services() {
       items: t.services.realEstate.items,
       image: "/core-architects_portuguese-architecture99-1160x613.jpg",
       buttonText: t.services.realEstate.cta,
-      link: "/Realestate",
+      link: "/real-estate",
     },
     {
       icon: Briefcase,
@@ -37,7 +37,7 @@ export default function Services() {
       items: t.services.business.items,
       image: "/krakenimages-376KN_ISplE-unsplash.jpg",
       buttonText: t.services.business.cta,
-      link: "/business",
+      link: "/business-creation-portugal",
     },
   ];
 
