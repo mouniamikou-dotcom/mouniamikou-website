@@ -24,8 +24,6 @@ const BusinessFormationService = () => {
 
   const [activeStep, setActiveStep] = useState(0);
   const [showTips, setShowTips] = useState(true);
-  const [currentStep, setCurrentStep] = useState(null);
-  const [steps, setSteps] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const timelineRef = useRef(null);
   const stepRefs = useRef([]);
@@ -53,10 +51,7 @@ const BusinessFormationService = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useEffect(() => {
-    // Recreate the steps array when language changes
-    if (t?.steps) {
-      const newSteps = [
+  const steps = [
         {
           title: t.steps[0]?.title || "Preparation",
           description: t.steps[0]?.description || "Initial Setup",
@@ -103,15 +98,7 @@ const BusinessFormationService = () => {
           requiredDocs: t.steps[4]?.requiredDocs || ["Compliance documents"],
         },
       ];
-      setSteps(newSteps);
-    }
-  }, [language, t]);
-
-  useEffect(() => {
-    if (steps.length > 0) {
-      setCurrentStep(steps[activeStep]);
-    }
-  }, [activeStep, steps]);
+  const currentStep = steps[activeStep];
 
   // Auto-scroll to active step on mobile
   useEffect(() => {
