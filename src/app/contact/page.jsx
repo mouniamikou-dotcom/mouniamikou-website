@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React from "react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import { Home, Building, Briefcase, FileText } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/translations";
