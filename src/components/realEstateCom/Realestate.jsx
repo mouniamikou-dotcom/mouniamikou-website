@@ -26,7 +26,6 @@ const RealEstateServicesPage = () => {
   const [activeTab, setActiveTab] = useState("purchase");
   const [activeStep, setActiveStep] = useState(0);
   const [showTips, setShowTips] = useState(true);
-  const [currentStep, setCurrentStep] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const timelineRef = useRef(null);
   const stepRefs = useRef([]);
@@ -112,6 +111,7 @@ const RealEstateServicesPage = () => {
   ];
 
   const currentSteps = activeTab === "purchase" ? purchaseSteps : saleSteps;
+  const currentStep = currentSteps[activeStep];
 
   // Check if mobile on mount and resize
   useEffect(() => {
@@ -128,11 +128,7 @@ const RealEstateServicesPage = () => {
     setActiveStep(0);
   }, [activeTab]);
 
-  useEffect(() => {
-    if (currentSteps && activeStep >= 0) {
-      setCurrentStep(currentSteps[activeStep]);
-    }
-  }, [activeStep, activeTab]);
+
 
   // Auto-scroll to active step on mobile
   useEffect(() => {
