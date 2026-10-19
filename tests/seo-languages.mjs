@@ -44,6 +44,11 @@ for (let start = 0; start < urls.length; start += 4) {
       assert.equal(new URL(alternates.find(link => link.hreflang === targetLanguage)?.href).href, new URL(SITE_URL + localizedPath(path, targetLanguage)).href, path);
     }
     const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '');
+    if (path === '/fr/contact') {
+      const cards = [...visible.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+      assert.ok(cards.find(match => attributes(match[1]).href === '/fr/contact/immobilier')?.[2].includes('Sécuriser mon investissement immobilier'));
+      assert.ok(cards.find(match => attributes(match[1]).href === '/fr/contact/entreprise')?.[2].includes('Créer mon entreprise au Portugal'));
+    }
     assert.equal([...visible.matchAll(/<h1\b/g)].length, 1, path + ' has one initial H1');
     const title = html.match(/<title>(.*?)<\/title>/)?.[1];
     assert.ok(title, path + ' has a title');
