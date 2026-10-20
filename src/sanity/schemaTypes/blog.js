@@ -136,6 +136,28 @@ export default {
       ],
     },
     {
+      name: "sources",
+      title: "Sources officielles / Official sources",
+      description: "Références réellement utilisées dans cet article. Indiquer le texte ou l’article pertinent et privilégier les sources officielles à jour.",
+      type: "array",
+      of: [{
+        type: "object",
+        name: "legalSource",
+        fields: [
+          {
+            name: "title", title: "Intitulé / Label", type: "object",
+            fields: [
+              { name: "fr", title: "Français", type: "string" },
+              { name: "en", title: "English", type: "string" },
+            ],
+            validation: (Rule) => Rule.required(),
+          },
+          { name: "url", title: "URL", type: "url", validation: (Rule) => Rule.required().uri({ scheme: ["https"] }) },
+        ],
+        preview: { select: { title: "title.fr", subtitle: "url" } },
+      }],
+    },
+    {
       name: "seo",
       title: "SEO",
       type: "object",
