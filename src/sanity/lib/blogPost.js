@@ -17,6 +17,7 @@ export const getBlogPost = cache(async (slug) => {
       category,
       description { en, fr },
       introduction { en, fr },
+      sources[] { _key, title { en, fr }, url },
       suggestedBlog-> {
         title { en, fr },
         category,
