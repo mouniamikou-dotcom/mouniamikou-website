@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
           <section className="mb-10 bg-white p-6 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-semibold text-primary mb-4">2. Data Controller</h2>
             <p><strong>Controller:</strong> Mounia Mikou</p>
-            <p><strong>Address:</strong> Travessa Cova da Moura 2, R/C dir. 1350 – 118 Lisboa, Portugal</p>
+            <p><strong>Address:</strong> Travessa Cova da Moura 2, R/C dir. 1350-118 Lisboa, Portugal</p>
             <p><strong>Email:</strong> mm@mouniamikou.com</p>
           </section>
 
