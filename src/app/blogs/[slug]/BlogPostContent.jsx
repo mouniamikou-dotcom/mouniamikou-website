@@ -196,9 +196,18 @@ const BlogPost = ({ initialPost }) => {
         </span>
         <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
 
-        <time dateTime={post.publishedAt} className="text-gray-600 block mb-6">
-          {formatDate(post.publishedAt)}
-        </time>
+        <div className="text-gray-600 mb-6 space-y-2">
+          <p>
+            {language === "fr" ? "Par " : "By "}
+            <Link href="/about" rel="author" className="text-blue-700 underline underline-offset-4">
+              Mounia Mikou
+            </Link>
+          </p>
+          <p>
+            {language === "fr" ? "Publié le " : "Published on "}
+            <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+          </p>
+        </div>
         <p className="text-xl text-gray-700 mb-4">
           {post.description?.[language] || post.description?.en || ""}
         </p>
@@ -231,6 +240,20 @@ const BlogPost = ({ initialPost }) => {
         </nav>
         <PortableText value={post.body} components={components} />
       </div>
+
+      <section aria-labelledby="article-author" className="mt-12 rounded-lg border border-gray-200 bg-gray-50 p-6">
+        <h2 id="article-author" className="text-2xl font-semibold mb-3">
+          {language === "fr" ? "À propos de Mounia Mikou" : "About Mounia Mikou"}
+        </h2>
+        <p className="text-gray-700 mb-4">
+          {language === "fr"
+            ? "Avocate francophone installée à Lisbonne depuis 2021, Mounia Mikou accompagne les particuliers et les entrepreneurs dans leurs projets d’installation, d’investissement immobilier et de création d’entreprise au Portugal."
+            : "A French-speaking lawyer based in Lisbon since 2021, Mounia Mikou supports individuals and entrepreneurs with relocation, property investment and business creation in Portugal."}
+        </p>
+        <Link href="/about" rel="author" className="text-blue-700 underline underline-offset-4">
+          {language === "fr" ? "Découvrir son parcours" : "Read about her background"}
+        </Link>
+      </section>
 
       {post.suggestedBlog && (
         <div className="mt-12">
