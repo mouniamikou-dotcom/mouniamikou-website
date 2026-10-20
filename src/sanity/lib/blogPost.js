@@ -1,6 +1,17 @@
 import { cache } from "react";
 import { client } from "./client";
 
+// Apply the site's typography preference to displayed CMS text, keeping URLs intact.
+function normalizeTypography(value, key) {
+  if (["url", "href", "slug", "_id", "_key", "_ref"].includes(key)) return value;
+  if (typeof value === "string") return value.replace(/[\u2013\u2014]/g, "-");
+  if (Array.isArray(value)) return value.map(item => normalizeTypography(item));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([name, item]) => [name, normalizeTypography(item, name)]));
+  }
+  return value;
+}
+
 // ✅ Fetch Blog Post Data
 export const getBlogPost = cache(async (slug) => {
   const query = `
@@ -32,12 +43,12 @@ export const getBlogPost = cache(async (slug) => {
       seo { en, fr }
     }
   `;
-  return await client.withConfig({ useCdn: false }).fetch(query, { slug }, { next: { revalidate: 3600 } });
+  return normalizeTypography(await client.withConfig({ useCdn: false }).fetch(query, { slug }, { next: { revalidate: 3600 } }));
 });
 
 
 export const getBlogPosts = cache(async () => {
-  return client.withConfig({ useCdn: false }).fetch(
+  return normalizeTypography(await client.withConfig({ useCdn: false }).fetch(
     `*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
       _id, title { en, fr }, slug, category, publishedAt, _updatedAt,
       mainImage { asset-> { url } },
@@ -46,5 +57,5 @@ export const getBlogPosts = cache(async () => {
     }`,
     {},
     { next: { revalidate: 3600 } }
-  );
+  ));
 });
