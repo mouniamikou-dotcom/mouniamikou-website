@@ -139,6 +139,13 @@ const BlogPost = ({ initialPost }) => {
   const { language } = useLanguage();
   const t = translations[language]?.blog || translations.en.blog;
   const data = initialPost;
+  const sources = (data.sources || []).filter(source => {
+    try {
+      return new URL(source.url).protocol === "https:" && (source.title?.[language] || source.title?.en || source.title?.fr);
+    } catch {
+      return false;
+    }
+  });
   const post = {
     ...data,
     title: data.title?.[language] || data.title?.en || "",
@@ -240,6 +247,23 @@ const BlogPost = ({ initialPost }) => {
         </nav>
         <PortableText value={post.body} components={components} />
       </div>
+
+      {sources.length > 0 && (
+        <section aria-labelledby="article-sources" className="mt-12 rounded-xl bg-gray-50 p-6 sm:p-8">
+          <h2 id="article-sources" className="text-2xl font-semibold text-primary mb-4">
+            {language === "fr" ? "Sources officielles" : "Official sources"}
+          </h2>
+          <ul className="space-y-3 list-disc pl-5 marker:text-primary">
+            {sources.map((source, index) => (
+              <li key={source._key || `${source.url}-${index}`}>
+                <a href={source.url} className="text-primary-dark underline underline-offset-4 break-words hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                  {source.title?.[language] || source.title?.en || source.title?.fr}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section aria-labelledby="article-author" className="mt-12 rounded-lg border border-gray-200 bg-gray-50 p-6">
         <h2 id="article-author" className="text-2xl font-semibold mb-3">
