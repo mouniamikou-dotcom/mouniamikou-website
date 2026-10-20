@@ -25,7 +25,7 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4">{t.footer.contact}</h3>
             <p className="flex items-center space-x-2">
               <MapPin size={20} />
-              <span>Travessa Cova da Moura 2, R/C dir. 1350 – 118 Lisboa</span>
+              <span>Travessa Cova da Moura 2, R/C dir. 1350-118 Lisboa</span>
             </p>
             <p className="flex items-center space-x-2 mt-2">
               <Mail size={20} />

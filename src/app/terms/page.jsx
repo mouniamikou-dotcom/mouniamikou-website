@@ -131,7 +131,7 @@ const TermsOfService = () => {
             <h2 className="text-3xl font-semibold text-primary mb-4">13. Contact Information</h2>
             <p>For any questions regarding these terms, please contact us at:</p>
             <p><strong>Mounia Mikou</strong></p>
-            <p>Travessa Cova da Moura 2, R/C dir. 1350 – 118 Lisboa</p>
+            <p>Travessa Cova da Moura 2, R/C dir. 1350-118 Lisboa</p>
             <p>Lisbon, Portugal</p>
             <p>Email: <a href="mailto:mm@mouniamikou.com" className="text-blue-500">mm@mouniamikou.com</a></p>
           </section>
