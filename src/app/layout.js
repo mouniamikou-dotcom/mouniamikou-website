@@ -13,7 +13,7 @@ const schemaOrg = (language) => ({
     {
       "@type": "LegalService",
       "@id": "https://mouniamikou.com/#legalservice",
-      name: "Mounia Mikou – French Lawyer in Portugal",
+      name: "Mounia Mikou - French Lawyer in Portugal",
       url: "https://mouniamikou.com",
       description: "French-speaking lawyer based in Lisbon specialising in relocation, real estate, and business creation in Portugal.",
       areaServed: "Portugal",
