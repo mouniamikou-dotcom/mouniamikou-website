@@ -271,8 +271,8 @@ const BlogPost = ({ initialPost }) => {
         </h2>
         <p className="text-gray-700 mb-4">
           {language === "fr"
-            ? "Avocate francophone installée à Lisbonne depuis 2021, Mounia Mikou accompagne les particuliers et les entrepreneurs dans leurs projets d’installation, d’investissement immobilier et de création d’entreprise au Portugal."
-            : "A French-speaking lawyer based in Lisbon since 2021, Mounia Mikou supports individuals and entrepreneurs with relocation, property investment and business creation in Portugal."}
+            ? "Mounia Mikou est avocate inscrite aux barreaux de Paris et de Lisbonne. Elle accompagne les particuliers et les entrepreneurs dans leurs projets d’installation, d’acquisition immobilière et de création d’entreprise au Portugal. Elle propose un accompagnement juridique en français et en anglais."
+            : "Mounia Mikou is a lawyer admitted to the Paris and Lisbon Bars. She advises individuals and entrepreneurs on relocation, property purchases and business formation in Portugal, providing legal guidance in English and French."}
         </p>
         <Link href="/about" rel="author" className="text-blue-700 underline underline-offset-4">
           {language === "fr" ? "Découvrir son parcours" : "Read about her background"}
