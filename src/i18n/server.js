@@ -7,16 +7,16 @@ export async function getRequestLanguage() {
 
 const pages = {
   '/': {
-    en: ['French-Speaking Lawyer in Lisbon, Portugal | Mounia Mikou', 'French-speaking lawyer in Lisbon. Legal support for relocation, real estate investment and business creation in Portugal. Book a discovery call.'],
-    fr: ['Avocate francophone à Lisbonne, Portugal | Mounia Mikou', 'Mounia Mikou, avocate francophone à Lisbonne, vous accompagne pour votre installation, votre achat immobilier et votre création d’entreprise au Portugal.'],
+    en: ['Mounia Mikou | Lawyer in Lisbon, legal advice in English', 'Lawyer admitted to the Paris and Lisbon Bars. Legal guidance in English and French for relocation, property purchases and business formation in Portugal.'],
+    fr: ['Mounia Mikou | Avocate à Lisbonne, accompagnement en français', 'Avocate inscrite aux barreaux de Paris et de Lisbonne. Accompagnement en français et en anglais pour s’installer, acheter un bien ou entreprendre au Portugal.'],
   },
   '/about': {
-    en: ['Meet Mounia Mikou | French-Speaking Lawyer in Portugal', 'Discover Mounia Mikou, her international legal experience and her support for individuals and entrepreneurs in Portugal.'],
-    fr: ['Mounia Mikou | Avocate francophone au Portugal', 'Découvrez le parcours international de Mounia Mikou et son accompagnement juridique des particuliers et entrepreneurs au Portugal.'],
+    en: ['Meet Mounia Mikou | Lawyer admitted to the Paris and Lisbon Bars', 'Meet Mounia Mikou, a lawyer admitted to the Paris and Lisbon Bars, advising individuals and entrepreneurs in Portugal in English and French.'],
+    fr: ['Mounia Mikou | Avocate aux barreaux de Paris et de Lisbonne', 'Découvrez le parcours de Mounia Mikou, avocate aux barreaux de Paris et de Lisbonne, et son accompagnement au Portugal en français et en anglais.'],
   },
   '/settling-in-portugal': {
-    en: ['Settling in Portugal | Relocation Lawyer | Mounia Mikou', 'Legal support for moving to Portugal: visas, residence, NIF and administrative procedures. Discuss your project with Mounia Mikou.'],
-    fr: ['S’installer au Portugal | Avocate francophone | Mounia Mikou', 'Visas, résidence, NIF et démarches administratives : Mounia Mikou vous accompagne dans votre installation au Portugal. Échangeons sur votre projet.'],
+    en: ['Settling in Portugal | Relocation Lawyer | Mounia Mikou', 'Legal support in English for moving to Portugal: visas, residence, NIF and administrative procedures. Discuss your project with Mounia Mikou.'],
+    fr: ['S’installer au Portugal | Accompagnement en français | Mounia Mikou', 'Visas, résidence, NIF et démarches administratives : Mounia Mikou vous accompagne en français dans votre installation au Portugal.'],
   },
   '/real-estate': {
     en: ['Property Lawyer in Portugal | Mounia Mikou', 'Secure your purchase or sale in Portugal with legal due diligence, contract review and representation through to completion.'],
@@ -27,8 +27,8 @@ const pages = {
     fr: ['Créer une entreprise au Portugal | Avocate | Mounia Mikou', 'Choix de la structure juridique, constitution de société et suivi : un accompagnement pour créer et développer votre entreprise au Portugal.'],
   },
   '/blogs': {
-    en: ['Legal Guides for Portugal | Mounia Mikou', 'Practical legal guides on property, visas, business creation and tax in Portugal, by French-speaking lawyer Mounia Mikou.'],
-    fr: ['Guides juridiques sur le Portugal | Mounia Mikou', 'Immobilier, visas, création d’entreprise et fiscalité : les guides pratiques de Mounia Mikou, avocate francophone au Portugal.'],
+    en: ['Legal Guides for Portugal | Mounia Mikou', 'Practical guides on property, visas, business and tax in Portugal by Mounia Mikou, a lawyer providing legal advice in English and French.'],
+    fr: ['Guides juridiques sur le Portugal | Mounia Mikou', 'Immobilier, visas, entreprise et fiscalité au Portugal : les guides de Mounia Mikou, avocate proposant un accompagnement en français et en anglais.'],
   },
   '/contact': {
     en: ['Contact Mounia Mikou | Lawyer in Lisbon', 'Discuss your relocation, property or business project in Portugal with Mounia Mikou.'],
