@@ -13,9 +13,11 @@ const schemaOrg = (language) => ({
     {
       "@type": "LegalService",
       "@id": "https://mouniamikou.com/#legalservice",
-      name: "Mounia Mikou - French Lawyer in Portugal",
+      name: "Mounia Mikou",
       url: "https://mouniamikou.com",
-      description: "French-speaking lawyer based in Lisbon specialising in relocation, real estate, and business creation in Portugal.",
+      description: language === "fr"
+        ? "Mounia Mikou, avocate inscrite aux barreaux de Paris et de Lisbonne, accompagne les particuliers et les entrepreneurs au Portugal en français et en anglais."
+        : "Mounia Mikou is a lawyer admitted to the Paris and Lisbon Bars, advising individuals and entrepreneurs in Portugal in English and French.",
       areaServed: "Portugal",
       inLanguage: ["en", "fr", "pt", "ar"],
       priceRange: "$$",
@@ -24,7 +26,7 @@ const schemaOrg = (language) => ({
       "@type": "Person",
       "@id": "https://mouniamikou.com/#person",
       name: "Mounia Mikou",
-      jobTitle: "Lawyer",
+      jobTitle: language === "fr" ? "Avocate" : "Lawyer",
       url: SITE_URL + localizedPath("/about", language),
       sameAs: [
         "https://www.avocatparis.org/annuaire/avocat?cnbf=CEC346A8rTbjqcZT5F/0ow==",
