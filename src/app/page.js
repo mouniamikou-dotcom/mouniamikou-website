@@ -1,26 +1,11 @@
-import Navbar from "@/components/Navbar"
-import Hero from "@/components/Hero"
-
-import Services from "@/components/Service"
-
-import Footer from "@/components/Footer"
-import BlogList from "@/components/BlogList"
-import { getBlogPosts } from "@/sanity/lib/blogPost"
-
-// import BookingButton from "@/components/Bookingbutton"
-
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import EditorialPage from '@/components/EditorialPage';
+import BlogList from '@/components/BlogList';
+import { getBlogPosts } from '@/sanity/lib/blogPost';
 
 export default async function Home() {
-  return (
- 
-    <main>
-      <Navbar />
-      <Hero />
-      <Services />
-      <BlogList initialPosts={await getBlogPosts()} />
-      <Footer />
-      
-    </main>
- 
-  )
+  return <><Navbar /><main><EditorialPage subject="home" />
+    <section className="py-10 max-w-7xl mx-auto px-5"><BlogList initialPosts={await getBlogPosts()} /></section>
+  </main><Footer /></>;
 }

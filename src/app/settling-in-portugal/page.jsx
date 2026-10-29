@@ -1,20 +1,7 @@
-"use client";
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import EditorialPage from '@/components/EditorialPage';
 
-import InstallationForm from "@/components/form/InstallationForm";
-import Navbar from "@/components/Navbar";
-import Instal from "@/components/installation/InstallationPortugal.jsx";
-import React from "react";
-import Footer from "@/components/Footer";
-
-function Page() {
-  return (
-    <>
-      <Navbar />
-      <Instal />
-      <InstallationForm />
-      <Footer />
-    </>
-  );
+export default function Page() {
+  return <><Navbar /><main><EditorialPage subject='immigration' /></main><Footer /></>;
 }
-
-export default Page;

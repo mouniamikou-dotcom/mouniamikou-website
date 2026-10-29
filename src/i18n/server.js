@@ -1,3 +1,5 @@
+import editorialFr from '@/content/editorial.fr.json';
+import editorialEn from '@/content/editorial.en.json';
 import { headers } from 'next/headers';
 import { englishPath, localizedPath, pageAlternates, SITE_URL } from './routes';
 
@@ -39,12 +41,23 @@ const pages = {
   '/cookies': { en: ['Cookie Policy | Mounia Mikou', 'Information about cookies and privacy preferences on the Mounia Mikou website.'] },
 };
 
+const editorialSubjects = {
+  '/': 'home', '/about': 'about', '/business-creation-portugal': 'formation',
+  '/corporate-legal-services-portugal': 'corporate', '/real-estate': 'property', '/settling-in-portugal': 'immigration',
+};
+
 export async function requestMetadata() {
   const requestHeaders = await headers();
   const language = await getRequestLanguage();
   const path = englishPath(requestHeaders.get('x-site-path') || '/');
   const contact = path.startsWith('/contact/') ? pages['/contact'] : null;
-  const copy = (pages[path] || contact || pages['/'])[language] || pages['/'].en;
+  let copy = (pages[path] || contact || pages['/'])[language] || pages['/'].en;
+  const subject = editorialSubjects[path];
+  if (subject) {
+    const page = (language === 'fr' ? editorialFr : editorialEn)[subject];
+    const paragraph = page.intro.blocks.find(block => block.type === 'paragraph').text.replace(/\*/g, '');
+    copy = [page.title + ' | Mounia Mikou', paragraph.length > 165 ? paragraph.slice(0, 162).replace(/\s+\S*$/, '') + '…' : paragraph];
+  }
   const url = SITE_URL + localizedPath(path, language);
   return {
     metadataBase: new URL(SITE_URL),

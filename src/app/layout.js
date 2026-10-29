@@ -19,8 +19,7 @@ const schemaOrg = (language) => ({
         ? "Mounia Mikou, avocate inscrite aux barreaux de Paris et de Lisbonne, accompagne les particuliers et les entrepreneurs au Portugal en français et en anglais."
         : "Mounia Mikou is a lawyer admitted to the Paris and Lisbon Bars, advising individuals and entrepreneurs in Portugal in English and French.",
       areaServed: "Portugal",
-      inLanguage: ["en", "fr", "pt", "ar"],
-      priceRange: "$$",
+      inLanguage: ["en", "fr"],
     },
     {
       "@type": "Person",

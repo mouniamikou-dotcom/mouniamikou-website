@@ -3,6 +3,9 @@ import { sendEmail } from "@/utils/mailer";
 import { verifyRecaptcha } from "@/utils/recaptcha";
 
 export async function POST(req) {
+  if (process.env.VERCEL_ENV !== 'production') {
+    return NextResponse.json({ success: false, code: 'PREVIEW_DISABLED' }, { status: 503 });
+  }
   try {
     const body = await req.json();
     const { recaptchaToken, ...formData } = body;

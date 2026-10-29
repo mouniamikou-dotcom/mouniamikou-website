@@ -1,20 +1,7 @@
-"use client";
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import EditorialPage from '@/components/EditorialPage';
 
-import BusinessServicesPage from "@/components/business/BusinessComponent";
-import Footer from "@/components/Footer";
-import BusinessForm from "@/components/form/BusinessForm";
-import Navbar from "@/components/Navbar";
-import React from "react";
-
-function Page() {
-  return (
-    <>
-      <Navbar />
-      <BusinessServicesPage />
-      <BusinessForm />
-      <Footer />
-    </>
-  );
+export default function Page() {
+  return <><Navbar /><main><EditorialPage subject='formation' /></main><Footer /></>;
 }
-
-export default Page;

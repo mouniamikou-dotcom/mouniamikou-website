@@ -1,4 +1,5 @@
 "use client";
+import { navigationLabels } from '@/i18n/navigation';
 import { MapPin, Mail, Linkedin, Instagram } from "lucide-react";
 import Link from "@/components/LocalizedLink";
 import { useLanguage } from "../context/LanguageContext";
@@ -7,13 +8,14 @@ import LanguageSelector from "./LanguageSelector";
 
 export default function Footer() {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = { ...translations[language], nav: { ...translations[language].nav, ...navigationLabels[language] } };
 
   const navItems = [
     { label: t.nav.about, href: "/about" },
     { label: t.nav.installP, href: "/settling-in-portugal" },
     { label: t.nav.realestate, href: "/real-estate" },
     { label: t.nav.business, href: "/business-creation-portugal" },
+    { label: t.nav.corporate, href: "/corporate-legal-services-portugal" },
     { label: t.nav.blogs, href: "/blogs" },
   ];
   return (

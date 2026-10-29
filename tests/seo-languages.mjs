@@ -4,6 +4,7 @@ const SITE_URL = 'https://mouniamikou.com';
 const pairs = {
   '/': '/fr',
   '/about': '/fr/a-propos',
+  '/corporate-legal-services-portugal': '/fr/accompagnement-juridique-societes-portugal',
   '/real-estate': '/fr/immobilier-portugal',
   '/settling-in-portugal': '/fr/installation-portugal',
   '/business-creation-portugal': '/fr/creation-entreprise-portugal',
@@ -45,9 +46,15 @@ for (let start = 0; start < urls.length; start += 4) {
     }
     const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '');
     if (path === '/fr/contact') {
-      const cards = [...visible.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
-      assert.ok(cards.find(match => attributes(match[1]).href === '/fr/contact/immobilier')?.[2].includes('Sécuriser mon investissement immobilier'));
-      assert.ok(cards.find(match => attributes(match[1]).href === '/fr/contact/entreprise')?.[2].includes('Créer mon entreprise au Portugal'));
+      assert.match(visible, /Nom complet/);
+      for (const name of ['fullName', 'description', 'privacyAccepted']) {
+        const tag = [...visible.matchAll(/<(input|textarea)\b[^>]*>/g)].map(match => match[0]).find(tag => tag.includes(`name="${name}"`));
+        assert.ok(tag && /\srequired=/.test(tag), name + ' is required');
+      }
+      const phone = visible.match(/<input[^>]*name="phone"[^>]*>/)?.[0];
+      assert.ok(phone && !phone.includes('required'), 'Phone is optional');
+      assert.equal([...visible.matchAll(/<option value="(formation|corporate|property|immigration|other)"/g)].length, 5);
+      assert.match(visible, /<option value="" selected=""/);
     }
     assert.equal([...visible.matchAll(/<h1\b/g)].length, 1, path + ' has one initial H1');
     const title = html.match(/<title>(.*?)<\/title>/)?.[1];

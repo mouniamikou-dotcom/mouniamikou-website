@@ -1,16 +1,11 @@
-# Prévisualisation technique FR/EN
+# Refonte FR/EN en prévisualisation
 
-Cette branche prépare l'environnement de travail. La refonte éditoriale n'est pas encore intégrée.
+Les douze textes destinés aux pages ont été intégrés : accueil, à propos, création de sociétés, accompagnement des sociétés, immobilier, immigration et nationalité, en français et en anglais.
 
-- Sanity utilise un dataset de travail privé distinct. La configuration refuse le dataset production.
-- SANITY_API_READ_TOKEN est réservé au serveur. Ne jamais utiliser un préfixe NEXT_PUBLIC_ pour ce secret.
-- Les lectures utilisent la perspective published. Les brouillons sont exclus.
-- Les emails sont désactivés en preview et en local.
-- Les variables Vercel de travail doivent cibler preview et cette branche uniquement.
-- Aucun déploiement production, aucune promotion ni fusion dans main ne font partie de cette mission.
+La nouvelle page Corporate est accessible sur /corporate-legal-services-portugal et /fr/accompagnement-juridique-societes-portugal. Les autres URLs sont conservées. Les étapes des textes et les FAQ disposent de contrôles interactifs accessibles.
 
-Contrôles locaux réussis : build Next.js complet, cinq tests de protection et contrôle SEO bilingue portant sur 54 pages du sitemap.
+Le formulaire centralisé utilise les libellés validés et les cinq catégories. Les envois sont désactivés sur cette branche de preview. Certaines questions complémentaires et les messages définitifs restent à valider avant une éventuelle activation future, exclue de cette mission.
 
-Les documents de passation, archives Sanity, secrets et journaux détaillés restent hors de cette publication publique.
+Sanity utilise un dataset de travail privé distinct. SANITY_API_READ_TOKEN reste uniquement sur le serveur. Les brouillons ne sont pas affichés. Aucun déploiement production, aucune promotion ni fusion dans main ne font partie de cette mission.
 
-Une fois la preview prête, consulter son URL et son état dans le tableau des déploiements Vercel du projet.
+Les archives, documents sources bruts, secrets et journaux détaillés ne sont pas publiés dans cette branche publique.

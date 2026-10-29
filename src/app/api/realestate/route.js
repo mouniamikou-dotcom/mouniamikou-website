@@ -3,6 +3,9 @@ import { verifyRecaptcha } from "@/utils/recaptcha";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
+  if (process.env.VERCEL_ENV !== 'production') {
+    return NextResponse.json({ success: false, code: 'PREVIEW_DISABLED' }, { status: 503 });
+  }
   try {
     const body = await request.json();
     const { recaptchaToken, ...formData } = body;

@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import { navigationLabels } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
@@ -12,18 +13,19 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false); // State for services dropdown
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = { ...translations[language], nav: { ...translations[language].nav, ...navigationLabels[language] } };
 
   const navItems = [
     { label: t.nav.home, href: '/' },
     { label: t.nav.about, href: '/about' },
-    { 
-      label: t.nav.services, 
+    {
+      label: t.nav.services,
       href: '/',
       submenu: [
-        { label: t.nav.installP, href: '/settling-in-portugal' },
+        { label: t.nav.business, href: '/business-creation-portugal', group: t.nav.corporateGroup },
+        { label: t.nav.corporate, href: '/corporate-legal-services-portugal' },
         { label: t.nav.realestate, href: '/real-estate' },
-        { label: t.nav.business, href: '/business-creation-portugal' },
+        { label: t.nav.installP, href: '/settling-in-portugal' },
       ]
     },
     { label: t.nav.blogs, href: '/blogs' },
@@ -32,41 +34,42 @@ export default function Navbar() {
   return (
     <div className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">   
-          <Link href="/" className="text-xl font-bold w-16 h-16">         
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="text-xl font-bold w-16 h-16">
             <Image src="/Logo blanc_page-0001.jpg" alt="logo lawyer" width={100} height={20}/>
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center justify-center flex-1 space-x-20">
+          <div className="hidden md:flex items-center justify-center flex-1 space-x-8">
             {navItems.map((item) => (
               item.submenu ? (
                 <div key={item.label} className="relative group">
-                  <button 
+                  <button
                     className="flex items-center text-gray-600 hover:text-primary transition-colors"
+                    aria-expanded={servicesOpen}
                     onClick={() => setServicesOpen(!servicesOpen)}
                   >
                     {item.label} <ChevronDown className="ml-1 w-4 h-4" />
                   </button>
                   {servicesOpen && (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-3 bg-white shadow-lg rounded-lg w-56 py-3">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-3 bg-white shadow-lg rounded-lg w-80 max-w-[90vw] py-3">
                       {item.submenu.map((subItem) => (
-                        <Link 
-                          key={subItem.label} 
-                          href={subItem.href} 
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
                           className="block px-6 py-3 text-gray-600 hover:bg-gray-100 rounded-lg"
                           onClick={() => setServicesOpen(false)}
                         >
-                          {subItem.label}
+                          {subItem.group && <span className="block text-xs uppercase tracking-wide text-primary-dark mb-1">{subItem.group}</span>}{subItem.label}
                         </Link>
                       ))}
                     </div>
                   )}
                 </div>
               ) : (
-                <Link 
-                  key={item.label} 
-                  href={item.href} 
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="text-gray-600 hover:text-primary transition-colors"
                 >
                   {item.label}
@@ -87,7 +90,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <button aria-label={language === 'fr' ? 'Menu de navigation' : 'Navigation menu'} aria-expanded={isOpen} className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -103,34 +106,35 @@ export default function Navbar() {
               {navItems.map((item) => (
                 item.submenu ? (
                   <div key={item.label}>
-                    <button 
+                    <button
                       className="w-full text-left px-3 py-2 flex justify-between text-gray-600 hover:text-primary transition-colors"
-                      onClick={() => setServicesOpen(!servicesOpen)}
+                      aria-expanded={servicesOpen}
+                    onClick={() => setServicesOpen(!servicesOpen)}
                     >
                       {item.label} <ChevronDown className="w-4 h-4" />
                     </button>
                     {servicesOpen && (
                       <div className="ml-4 space-y-1">
                         {item.submenu.map((subItem) => (
-                          <Link 
-                            key={subItem.label} 
-                            href={subItem.href} 
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
                             className="block px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg"
                             onClick={() => {
                               setIsOpen(false);
                               setServicesOpen(false);
                             }}
                           >
-                            {subItem.label}
+                            {subItem.group && <span className="block text-xs uppercase tracking-wide text-primary-dark mb-1">{subItem.group}</span>}{subItem.label}
                           </Link>
                         ))}
                       </div>
                     )}
                   </div>
                 ) : (
-                  <Link 
-                    key={item.label} 
-                    href={item.href} 
+                  <Link
+                    key={item.label}
+                    href={item.href}
                     className="block px-3 py-2 text-gray-600 hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >

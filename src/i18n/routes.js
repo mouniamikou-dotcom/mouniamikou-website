@@ -6,6 +6,7 @@ export const SITE_URL = 'https://mouniamikou.com';
 export const frenchRoutes = {
   '/': '/fr',
   '/about': '/fr/a-propos',
+  '/corporate-legal-services-portugal': '/fr/accompagnement-juridique-societes-portugal',
   '/settling-in-portugal': '/fr/installation-portugal',
   '/real-estate': '/fr/immobilier-portugal',
   '/business-creation-portugal': '/fr/creation-entreprise-portugal',
