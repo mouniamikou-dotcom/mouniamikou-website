@@ -1,10 +1,12 @@
-import { createClient } from 'next-sanity'
+import 'server-only';
+import { createClient } from 'next-sanity';
+import { apiVersion, dataset, projectId } from '../env';
+import { privateReadConfig } from './read-policy.cjs';
 
-import { apiVersion, dataset, projectId } from '../env'
-
+// This module must never be imported by a client component.
 export const client = createClient({
-  projectId: 'bfaunxy0',  
-  dataset: 'production',
+  projectId,
+  dataset,
   apiVersion,
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
-})
+  ...privateReadConfig(process.env.SANITY_API_READ_TOKEN),
+});
