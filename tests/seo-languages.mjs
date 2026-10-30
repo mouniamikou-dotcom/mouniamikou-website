@@ -10,6 +10,9 @@ const pairs = {
   '/business-creation-portugal': '/fr/creation-entreprise-portugal',
   '/blogs': '/fr/articles',
   '/contact': '/fr/contact',
+  '/privacy': '/fr/confidentialite',
+  '/cookies': '/fr/cookies',
+  '/terms': '/fr/conditions-utilisation',
 };
 function localizedPath(path, language) {
   const en = Object.entries(pairs).find(([, fr]) => fr === path)?.[0]
@@ -70,7 +73,7 @@ for (let start = 0; start < urls.length; start += 4) {
       for (const match of visible.matchAll(/<a\b[^>]*>/g)) {
         const link = attributes(match[0]);
         if (!link.href?.startsWith('/') || link.href.startsWith('//') || link.hreflang === 'en') continue;
-        assert.ok(link.href.startsWith('/fr') || ['/terms', '/privacy', '/cookies'].includes(link.href), path + ': ' + link.href);
+        assert.ok(link.href.startsWith('/fr'), path + ': ' + link.href);
       }
     }
     pages.set(path, { title, visible });

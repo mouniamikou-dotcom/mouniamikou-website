@@ -11,3 +11,7 @@ Sanity utilise un dataset de travail privé distinct. SANITY_API_READ_TOKEN rest
 Les archives, documents sources bruts, secrets et journaux détaillés ne sont pas publiés dans cette branche publique.
 
 Corrections du 30 octobre : menu direct avec deux sous-pages sociétés, catégories d’articles harmonisées, libellés Calendly explicites, descriptions complètes et retrait du visuel de banque de la page création. Les textes légaux bilingues et la recette mobile complète restent en cours.
+
+Pages légales FR/EN révisées pour la préproduction après revue du cabinet : confidentialité, cookies, conditions d’utilisation. Les URLs anglaises historiques restent disponibles ; les liens français mènent aux versions françaises.
+
+Circuit de recette email préparé, désactivé par défaut et refusé en production. Une éventuelle fenêtre d’essai est limitée à la branche de travail, au dataset privé, à l’alias de préproduction, aux données fictives et au destinataire de recette convenu. Les garanties anti-spam et les erreurs sont testées sans envoi réel ; la délivrabilité et la réception restent à confirmer avec le cabinet. Aucun accusé automatique au visiteur activé.

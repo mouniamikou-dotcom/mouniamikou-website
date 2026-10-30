@@ -40,9 +40,9 @@ const pages = {
     en: ['Contact Mounia Mikou | Lawyer in Lisbon', 'Discuss your relocation, property or business project in Portugal with Mounia Mikou.'],
     fr: ['Contacter Mounia Mikou | Avocate à Lisbonne', 'Présentez votre projet d’installation, d’achat immobilier ou de création d’entreprise au Portugal à Mounia Mikou.'],
   },
-  '/terms': { en: ['Terms of Service | Mounia Mikou', 'Professional status, terms of service and legal information for the Mounia Mikou website.'] },
-  '/privacy': { en: ['Privacy Policy | Mounia Mikou', 'Information about personal data processing and your rights.'] },
-  '/cookies': { en: ['Cookie Policy | Mounia Mikou', 'Information about cookies and privacy preferences on the Mounia Mikou website.'] },
+  '/terms': { fr: ['Conditions d’utilisation | Mounia Mikou', 'Informations professionnelles et conditions d’utilisation du site de Mounia Mikou.'], en: ['Terms of Service | Mounia Mikou', 'Professional status, terms of service and legal information for the Mounia Mikou website.'] },
+  '/privacy': { fr: ['Politique de confidentialité | Mounia Mikou', 'Utilisation des données de contact, conservation, prestataires et exercice de vos droits.'], en: ['Privacy Policy | Mounia Mikou', 'Information about personal data processing and your rights.'] },
+  '/cookies': { fr: ['Politique des cookies | Mounia Mikou', 'Informations sur les cookies, les services externes et les choix des visiteurs.'], en: ['Cookie Policy | Mounia Mikou', 'Information about cookies and privacy preferences on the Mounia Mikou website.'] },
 };
 
 const editorialSubjects = {

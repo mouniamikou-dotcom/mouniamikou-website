@@ -4,7 +4,7 @@ import { localizedPath, pageAlternates, SITE_URL } from "@/i18n/routes";
 export const revalidate = 3600;
 
 export default async function sitemap() {
-  const paths = ["/", "/about", "/real-estate", "/settling-in-portugal", "/business-creation-portugal", "/corporate-legal-services-portugal", "/contact", "/blogs"];
+  const paths = ["/", "/about", "/real-estate", "/settling-in-portugal", "/business-creation-portugal", "/corporate-legal-services-portugal", "/contact", "/blogs", "/privacy", "/cookies", "/terms"];
   const staticPages = paths.flatMap(path => ["en", "fr"].map(language => ({
     url: SITE_URL + localizedPath(path, language),
     alternates: { languages: pageAlternates(path, language).languages },
