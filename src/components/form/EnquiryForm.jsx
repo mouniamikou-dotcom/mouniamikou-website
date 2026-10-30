@@ -52,7 +52,7 @@ export default function EnquiryForm({ initialService = '' }) {
             const next = {...current, [question.key]: event.target.value};
             if (question.key === 'transaction' && event.target.value !== 'buy') delete next.financing;
             return next;
-          })}><option value="">—</option>{question.options.map(option => <option key={option.value} value={option.value}>{option[language]}</option>)}</select> : <input id={id+'-'+question.key} name={question.key} maxLength={300} value={answers[question.key] || ''} onChange={event => setAnswers(current => ({...current, [question.key]: event.target.value}))} className={fieldClass} />}
+          })}><option value="">{language === 'fr' ? 'Sélectionner (facultatif)' : 'Select (optional)'}</option>{question.options.map(option => <option key={option.value} value={option.value}>{option[language]}</option>)}</select> : <input id={id+'-'+question.key} name={question.key} maxLength={300} value={answers[question.key] || ''} onChange={event => setAnswers(current => ({...current, [question.key]: event.target.value}))} className={fieldClass} />}
         </div>)}
         <div><label htmlFor={id+'-description'} className="font-medium">{copy.description}</label><textarea id={id+'-description'} name="description" aria-invalid={Boolean(errors.description)} placeholder={copy.descriptionPlaceholder} required maxLength={5000} rows={6} className={fieldClass} /></div>
         <div><label htmlFor={id+'-additional'} className="font-medium">{copy.additional}</label><textarea id={id+'-additional'} name="additionalInfo" placeholder={copy.additionalPlaceholder} maxLength={3000} rows={3} className={fieldClass} /></div>

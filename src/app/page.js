@@ -5,7 +5,7 @@ import BlogList from '@/components/BlogList';
 import { getBlogPosts } from '@/sanity/lib/blogPost';
 
 export default async function Home() {
-  return <><Navbar /><main><EditorialPage subject="home" />
+  return <><Navbar /><main><EditorialPage subject="home">
     <section className="py-10 max-w-7xl mx-auto px-5"><BlogList initialPosts={await getBlogPosts()} /></section>
-  </main><Footer /></>;
+  </EditorialPage></main><Footer /></>;
 }

@@ -69,6 +69,6 @@ export async function requestMetadata() {
     alternates: pageAlternates(path, language),
     openGraph: { type: 'website', title: copy[0], description: copy[1], url, locale: language === 'fr' ? 'fr_FR' : 'en_US', siteName: 'Mounia Mikou' },
     twitter: { card: 'summary_large_image', title: copy[0], description: copy[1] },
-    robots: { index: true, follow: true },
+    robots: { index: process.env.VERCEL_ENV === 'production', follow: process.env.VERCEL_ENV === 'production' },
   };
 }

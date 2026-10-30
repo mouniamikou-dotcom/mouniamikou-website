@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Image from 'next/image';
 import EditorialSteps from '@/components/EditorialSteps';
 import Link from '@/components/LocalizedLink';
@@ -100,14 +101,14 @@ export default async function EditorialPage({ subject, children }) {
         {pictures[subject] && <Image src={pictures[subject]} alt={subject === 'home' || subject === 'about' ? 'Mounia Mikou' : ''} width={900} height={900} className="rounded-2xl shadow-xl w-full max-w-lg mx-auto max-h-[560px] object-cover" priority />}
       </div>
     </header>
-    {page.sections.map((section, index) => <section key={index} id={home && index === 0 ? 'services' : undefined} className={index % 2 ? 'py-12 sm:py-16 bg-gray-50' : 'py-12 sm:py-16 bg-white'}>
+    {page.sections.map((section, index) => <Fragment key={index}>{home && index === page.sections.length - 1 && children}<section id={home && index === 0 ? 'services' : undefined} className={index % 2 ? 'py-12 sm:py-16 bg-gray-50' : 'py-12 sm:py-16 bg-white'}>
       <div className="max-w-5xl mx-auto px-5 sm:px-8 space-y-6 text-gray-700 leading-relaxed">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{section.title}</h2>
         {/^(Questions fréquentes|Frequently Asked Questions)$/i.test(section.title)
           ? <Questions blocks={section.blocks} subject={subject} />
           : <SectionBlocks section={section} subject={subject} />}
       </div>
-    </section>)}
-    {children}
+    </section></Fragment>)}
+    {!home && children}
   </>;
 }
