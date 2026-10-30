@@ -28,6 +28,10 @@ const pages = {
     en: ['Starting a Business in Portugal | Lawyer | Mounia Mikou', 'Legal guidance for choosing your structure, setting up your company and developing your business in Portugal.'],
     fr: ['Créer une entreprise au Portugal | Avocate | Mounia Mikou', 'Choix de la structure juridique, constitution de société et suivi : un accompagnement pour créer et développer votre entreprise au Portugal.'],
   },
+  '/corporate-legal-services-portugal': {
+    fr: ['Accompagnement juridique des sociétés au Portugal | Mounia Mikou', 'Gouvernance, contrats, financement et formalités : Mounia Mikou accompagne la vie et le développement de votre société au Portugal.'],
+    en: ['Corporate Legal Support in Portugal | Mounia Mikou', 'Legal support for your company in Portugal: shareholders, governance, commercial contracts, financing and corporate filings with Mounia Mikou.'],
+  },
   '/blogs': {
     en: ['Legal Guides for Portugal | Mounia Mikou', 'Practical guides on property, visas, business and tax in Portugal by Mounia Mikou, a lawyer providing legal advice in English and French.'],
     fr: ['Guides juridiques sur le Portugal | Mounia Mikou', 'Immobilier, visas, entreprise et fiscalité au Portugal : les guides de Mounia Mikou, avocate proposant un accompagnement en français et en anglais.'],
@@ -55,8 +59,7 @@ export async function requestMetadata() {
   const subject = editorialSubjects[path];
   if (subject) {
     const page = (language === 'fr' ? editorialFr : editorialEn)[subject];
-    const paragraph = page.intro.blocks.find(block => block.type === 'paragraph').text.replace(/\*/g, '');
-    copy = [page.title + ' | Mounia Mikou', paragraph.length > 165 ? paragraph.slice(0, 162).replace(/\s+\S*$/, '') + '…' : paragraph];
+    copy = [page.title + ' | Mounia Mikou', pages[path][language][1]];
   }
   const url = SITE_URL + localizedPath(path, language);
   return {

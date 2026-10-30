@@ -43,10 +43,10 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Visa Portugal", value: "visa-portugal" },
-          { title: "Real Estate", value: "real-estate" },
-          { title: "Business", value: "business" },
-          { title: "Tax", value: "tax" },
+          { title: "Corporate / Société", value: "business" },
+          { title: "Real Estate / Immobilier", value: "real-estate" },
+          { title: "Tax / tax", value: "tax" },
+          { title: "Immigration", value: "visa-portugal" },
         ],
         layout: "radio",
       },

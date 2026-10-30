@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import { articleCategories } from '@/i18n/article-categories';
 
 import { useState } from "react";
 import Image from "next/image";
@@ -18,13 +19,7 @@ const BlogList = ({ initialPosts, headingLevel = "h2" }) => {
   }));
   const filteredBlogs = selectedCategory === "All" ? blogs : blogs.filter(post => post.category === selectedCategory);
 
-  const categories = [
-    { id: "All", en: "All", fr: "Tous" },
-    { id: "visa-portugal", en: "Visa Portugal", fr: "Visa Portugal" },
-    { id: "real-estate", en: "Real Estate", fr: "Immobilier" },
-    { id: "business", en: "Business", fr: "Entreprise" },
-    { id: "tax", en: "Tax", fr: "Fiscalité" }
-  ];
+  const categories = articleCategories;
   
 
   const handleFilterChange = (category) => {

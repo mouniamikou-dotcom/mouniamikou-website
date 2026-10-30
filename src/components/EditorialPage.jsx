@@ -11,7 +11,7 @@ const contactRoutes = {
 };
 const pictures = {
   home: '/photo_2024-12-13_11-33-38.jpg', about: '/photo_2024-12-13_11-33-38.jpg',
-  formation: '/krakenimages-376KN_ISplE-unsplash.jpg', corporate: '/optiBusinImg.jpg',
+  formation: null, corporate: '/optiBusinImg.jpg',
   property: '/core-architects_portuguese-architecture99-1160x613.jpg', immigration: '/passportPP.jpeg',
 };
 
@@ -25,6 +25,7 @@ function Inline({ text }) {
 function ctaTarget(text, subject) {
   if (!/^\*\*[^*]+\*\*$/.test(text)) return null;
   const label = text.slice(2, -2);
+  if (/^Découvrez mon accompagnement pour la création de votre société/i.test(label)) return '/business-creation-portugal';
   if (/^(Explore Corporate|Découvrir l'accompagnement juridique des sociétés|Découvrez mon accompagnement juridique des sociétés)/i.test(label)) return '/corporate-legal-services-portugal';
   if (/^(Explore Real Estate|Découvrir l'accompagnement immobilier|Découvrez mon accompagnement immobilier)/i.test(label)) return '/real-estate';
   if (/^(Explore Immigration|Découvrir l'accompagnement en immigration)/i.test(label)) return '/settling-in-portugal';
@@ -41,7 +42,7 @@ function DirectoryItem({ text }) {
   const href = /Paris/i.test(text)
     ? 'https://www.avocatparis.org/annuaire/avocat?cnbf=CEC346A8rTbjqcZT5F/0ow=='
     : 'https://portal.oa.pt/advogados/pesquisa-de-advogados/';
-  return <a href={href} className="text-primary-dark underline underline-offset-4"><Inline text={text} /></a>;
+  return <a href={href} className="text-primary-dark underline underline-offset-4">{ /Ordem|Portuguese/i.test(text) ? (/Consulter/i.test(text) ? 'Rechercher mon inscription dans l’annuaire de l’Ordem dos Advogados' : 'Search the Ordem dos Advogados directory') : <Inline text={text} />}</a>;
 }
 
 function Blocks({ blocks, subject }) {
@@ -89,14 +90,14 @@ export default async function EditorialPage({ subject, children }) {
   return <>
     <header className="relative bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-14 sm:pt-36 sm:pb-20">
       {home && <Image src="/portugal-4828134_1280.jpg" alt="" fill className="object-cover opacity-10" priority />}
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+      <div className={"relative max-w-7xl mx-auto px-5 sm:px-8 grid gap-10 items-center "+(pictures[subject] ? "lg:grid-cols-[1.3fr_1fr]" : "") }>
         <div className="space-y-5 text-gray-700 leading-relaxed">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">{page.title}</h1>
           <h2 className="text-xl sm:text-2xl font-medium text-primary-dark">{page.intro.title}</h2>
           <Blocks blocks={page.intro.blocks} subject={subject} />
-          {home && <p><a className="underline underline-offset-4 text-primary-dark" href="https://calendly.com/mouniamikou/discovery-call">{language === 'fr' ? 'Prendre rendez-vous' : 'Book a meeting'}</a></p>}
+          {home && <p><a className="underline underline-offset-4 text-primary-dark" href="https://calendly.com/mouniamikou/discovery-call">{language === 'fr' ? 'Réserver un appel découverte gratuit' : 'Book a free discovery call'}</a></p>}
         </div>
-        <Image src={pictures[subject]} alt={subject === 'home' || subject === 'about' ? 'Mounia Mikou' : ''} width={900} height={900} className="rounded-2xl shadow-xl w-full max-w-lg mx-auto max-h-[560px] object-cover" priority />
+        {pictures[subject] && <Image src={pictures[subject]} alt={subject === 'home' || subject === 'about' ? 'Mounia Mikou' : ''} width={900} height={900} className="rounded-2xl shadow-xl w-full max-w-lg mx-auto max-h-[560px] object-cover" priority />}
       </div>
     </header>
     {page.sections.map((section, index) => <section key={index} id={home && index === 0 ? 'services' : undefined} className={index % 2 ? 'py-12 sm:py-16 bg-gray-50' : 'py-12 sm:py-16 bg-white'}>

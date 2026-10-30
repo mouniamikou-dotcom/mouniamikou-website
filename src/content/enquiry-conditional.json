@@ -1,0 +1,257 @@
+[
+  {
+    "key": "activity",
+    "service": "formation",
+    "fr": "Quel type d’activité envisagez-vous ?",
+    "en": "What business activity are you considering?",
+    "options": []
+  },
+  {
+    "key": "ownership",
+    "service": "formation",
+    "fr": "Envisagez-vous de créer la société seul ou avec des associés ?",
+    "en": "Do you plan to establish the company on your own or with other shareholders?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Seul",
+        "en": "On my own"
+      },
+      {
+        "value": "2",
+        "fr": "Avec des associés",
+        "en": "With other shareholders"
+      },
+      {
+        "value": "3",
+        "fr": "À déterminer",
+        "en": "Not yet decided"
+      }
+    ]
+  },
+  {
+    "key": "formationStage",
+    "service": "formation",
+    "fr": "Où en est votre projet ?",
+    "en": "What stage has your project reached?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Réflexion",
+        "en": "Initial planning"
+      },
+      {
+        "value": "2",
+        "fr": "Préparation de la constitution",
+        "en": "Preparing incorporation"
+      },
+      {
+        "value": "3",
+        "fr": "Autre",
+        "en": "Other"
+      }
+    ]
+  },
+  {
+    "key": "corporateNeed",
+    "service": "corporate",
+    "fr": "Quel est votre besoin principal ?",
+    "en": "What is your main legal need?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Associés et gouvernance",
+        "en": "Shareholders and governance"
+      },
+      {
+        "value": "2",
+        "fr": "Contrats commerciaux",
+        "en": "Commercial contracts"
+      },
+      {
+        "value": "3",
+        "fr": "Financement ou capital",
+        "en": "Financing or share capital"
+      },
+      {
+        "value": "4",
+        "fr": "Formalités et modifications",
+        "en": "Corporate filings and changes"
+      },
+      {
+        "value": "5",
+        "fr": "Suivi régulier",
+        "en": "Ongoing support"
+      },
+      {
+        "value": "6",
+        "fr": "Autre",
+        "en": "Other"
+      }
+    ]
+  },
+  {
+    "key": "supportType",
+    "service": "corporate",
+    "fr": "Souhaitez-vous une intervention ponctuelle ou un accompagnement régulier ?",
+    "en": "Are you looking for assistance with a specific matter or ongoing support?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Ponctuelle",
+        "en": "Specific matter"
+      },
+      {
+        "value": "2",
+        "fr": "Régulière",
+        "en": "Ongoing support"
+      },
+      {
+        "value": "3",
+        "fr": "À déterminer",
+        "en": "Not yet decided"
+      }
+    ]
+  },
+  {
+    "key": "transaction",
+    "service": "property",
+    "fr": "Votre projet concerne-t-il un achat ou une vente ?",
+    "en": "Does your project concern buying or selling a property?",
+    "options": [
+      {
+        "value": "buy",
+        "fr": "Achat",
+        "en": "Buying"
+      },
+      {
+        "value": "sell",
+        "fr": "Vente",
+        "en": "Selling"
+      }
+    ]
+  },
+  {
+    "key": "propertyStage",
+    "service": "property",
+    "fr": "À quelle étape se trouve votre projet ?",
+    "en": "What stage has your property project reached?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Recherche ou préparation",
+        "en": "Searching or preparing"
+      },
+      {
+        "value": "2",
+        "fr": "Bien identifié",
+        "en": "Property identified"
+      },
+      {
+        "value": "3",
+        "fr": "CPCV en préparation",
+        "en": "CPCV being prepared"
+      },
+      {
+        "value": "4",
+        "fr": "CPCV signé",
+        "en": "CPCV signed"
+      },
+      {
+        "value": "5",
+        "fr": "Autre",
+        "en": "Other"
+      }
+    ]
+  },
+  {
+    "key": "financing",
+    "service": "property",
+    "fr": "Envisagez-vous un financement bancaire ?",
+    "en": "Are you considering bank financing?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Oui",
+        "en": "Yes"
+      },
+      {
+        "value": "2",
+        "fr": "Non",
+        "en": "No"
+      },
+      {
+        "value": "3",
+        "fr": "À déterminer",
+        "en": "Not yet decided"
+      }
+    ],
+    "buyOnly": true
+  },
+  {
+    "key": "immigrationTopic",
+    "service": "immigration",
+    "fr": "Quel sujet souhaitez-vous aborder ?",
+    "en": "What would you like assistance with?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Visa",
+        "en": "Visa"
+      },
+      {
+        "value": "2",
+        "fr": "Résidence",
+        "en": "Residence"
+      },
+      {
+        "value": "3",
+        "fr": "Renouvellement de titre",
+        "en": "Residence permit renewal"
+      },
+      {
+        "value": "4",
+        "fr": "Nationalité",
+        "en": "Citizenship"
+      },
+      {
+        "value": "5",
+        "fr": "NIF ou représentation fiscale",
+        "en": "NIF or fiscal representation"
+      },
+      {
+        "value": "6",
+        "fr": "À déterminer",
+        "en": "Not yet decided"
+      }
+    ]
+  },
+  {
+    "key": "immigrationStage",
+    "service": "immigration",
+    "fr": "Votre démarche est-elle déjà engagée ?",
+    "en": "Have you already started the procedure?",
+    "options": [
+      {
+        "value": "1",
+        "fr": "Pas encore",
+        "en": "Not yet"
+      },
+      {
+        "value": "2",
+        "fr": "Dossier en préparation",
+        "en": "Preparing the application"
+      },
+      {
+        "value": "3",
+        "fr": "Demande déposée",
+        "en": "Application submitted"
+      },
+      {
+        "value": "4",
+        "fr": "Autre",
+        "en": "Other"
+      }
+    ]
+  }
+]

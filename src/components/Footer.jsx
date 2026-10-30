@@ -85,7 +85,7 @@ export default function Footer() {
             </p>
             <Link href="https://calendly.com/mouniamikou/meeting">
               <button className="mt-4 bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition">
-                🗓 {t.footer.bookConsultation}
+                {language === 'fr' ? 'Réserver une consultation juridique payante' : 'Book a paid legal consultation'}
               </button>
             </Link>
           </div>

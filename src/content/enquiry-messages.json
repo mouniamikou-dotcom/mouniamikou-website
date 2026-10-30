@@ -1,0 +1,24 @@
+{
+  "fr": {
+    "name": "Indiquez votre nom complet.",
+    "emailRequired": "Indiquez votre adresse email.",
+    "emailInvalid": "Vérifiez le format de votre adresse email.",
+    "service": "Sélectionnez l’objet de votre demande.",
+    "description": "Décrivez brièvement votre demande.",
+    "privacy": "Veuillez confirmer avoir pris connaissance de la politique de confidentialité.",
+    "sending": "Envoi en cours…",
+    "success": "Votre demande a bien été transmise. Merci pour votre message.",
+    "failure": "Votre demande n’a pas pu être transmise. Veuillez réessayer ou écrire à mm@mouniamikou.com."
+  },
+  "en": {
+    "name": "Please enter your full name.",
+    "emailRequired": "Please enter your email address.",
+    "emailInvalid": "Please check the format of your email address.",
+    "service": "Please select the subject of your enquiry.",
+    "description": "Please briefly describe your enquiry.",
+    "privacy": "Please confirm that you have read the Privacy Policy.",
+    "sending": "Sending…",
+    "success": "Your enquiry has been submitted successfully. Thank you for your message.",
+    "failure": "Your enquiry could not be submitted. Please try again or email mm@mouniamikou.com."
+  }
+}

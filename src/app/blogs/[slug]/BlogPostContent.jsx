@@ -1,4 +1,5 @@
 "use client";
+import { articleCategoryLabel } from '@/i18n/article-categories';
 
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/translations";
@@ -199,7 +200,7 @@ const BlogPost = ({ initialPost }) => {
     <article className="container mx-auto py-24 px-4 max-w-4xl">
       <div className="mb-12">
         <span className="inline-block px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 mb-4">
-          {post.category}
+          {articleCategoryLabel(post.category, language)}
         </span>
         <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
 
@@ -300,7 +301,7 @@ const BlogPost = ({ initialPost }) => {
 
             <div className="p-6">
               <span className="inline-block px-3 py-1 text-sm rounded-full bg-primary text-white mb-4">
-                {post.suggestedBlog.category}
+                {articleCategoryLabel(post.suggestedBlog.category, language)}
               </span>
 
               <h2 className="text-xl font-semibold mb-2 line-clamp-2">

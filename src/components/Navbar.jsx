@@ -1,162 +1,68 @@
-"use client";
-import { navigationLabels } from '@/i18n/navigation';
-import { motion } from 'framer-motion';
+'use client';
+
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../translations';
+import { useEffect, useId, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
+import { englishPath } from '@/i18n/routes';
+import { navigationLabels } from '@/i18n/navigation';
 import LanguageSelector from './LanguageSelector';
 import Image from 'next/image';
-import Link from "@/components/LocalizedLink";
+import Link from '@/components/LocalizedLink';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false); // State for services dropdown
   const { language } = useLanguage();
-  const t = { ...translations[language], nav: { ...translations[language].nav, ...navigationLabels[language] } };
+  const labels = navigationLabels[language];
+  const pathname = englishPath(usePathname());
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [corporateOpen, setCorporateOpen] = useState(false);
+  const nav = useRef(null);
+  const trigger = useRef(null);
+  const firstLink = useRef(null);
+  const id = useId();
+  const corporateActive = ['/business-creation-portugal', '/corporate-legal-services-portugal'].includes(pathname);
+  const companyPages = [{ label: labels.business, href: '/business-creation-portugal' }, { label: labels.corporate, href: '/corporate-legal-services-portugal' }];
+  const before = [{ label: labels.home, href: '/' }, { label: labels.about, href: '/about' }];
+  const after = [{ label: labels.realestate, href: '/real-estate' }, { label: labels.installP, href: '/settling-in-portugal' }, { label: labels.blogs, href: '/blogs' }, { label: labels.contact, href: '/contact' }];
+  const close = () => { setMobileOpen(false); setCorporateOpen(false); };
 
-  const navItems = [
-    { label: t.nav.home, href: '/' },
-    { label: t.nav.about, href: '/about' },
-    {
-      label: t.nav.services,
-      href: '/',
-      submenu: [
-        { label: t.nav.business, href: '/business-creation-portugal', group: t.nav.corporateGroup },
-        { label: t.nav.corporate, href: '/corporate-legal-services-portugal' },
-        { label: t.nav.realestate, href: '/real-estate' },
-        { label: t.nav.installP, href: '/settling-in-portugal' },
-      ]
-    },
-    { label: t.nav.blogs, href: '/blogs' },
-  ];
+  useEffect(() => { setMobileOpen(false); setCorporateOpen(false); }, [pathname]);
+  useEffect(() => {
+    const outside = event => { if (!nav.current?.contains(event.target)) setCorporateOpen(false); };
+    const escape = event => { if (event.key === 'Escape') {setCorporateOpen(false); trigger.current?.focus();} };
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', escape);
+    return () => {document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape);};
+  }, []);
 
-  return (
-    <div className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold w-16 h-16">
-            <Image src="/Logo blanc_page-0001.jpg" alt="logo lawyer" width={100} height={20}/>
-          </Link>
+  const style = (href, extra = '') => 'rounded-md px-2 py-2 text-sm font-medium transition-colors hover:text-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary '+(pathname === href ? 'text-primary-dark underline underline-offset-8 ' : 'text-gray-700 ')+extra;
+  const navLink = (item, mobile = false) => <Link key={item.href} href={item.href} aria-current={pathname === item.href ? 'page' : undefined} onClick={close} className={style(item.href, mobile ? 'block px-3 py-3' : '')}>{item.label}</Link>;
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center justify-center flex-1 space-x-8">
-            {navItems.map((item) => (
-              item.submenu ? (
-                <div key={item.label} className="relative group">
-                  <button
-                    className="flex items-center text-gray-600 hover:text-primary transition-colors"
-                    aria-expanded={servicesOpen}
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                  >
-                    {item.label} <ChevronDown className="ml-1 w-4 h-4" />
-                  </button>
-                  {servicesOpen && (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-3 bg-white shadow-lg rounded-lg w-80 max-w-[90vw] py-3">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          className="block px-6 py-3 text-gray-600 hover:bg-gray-100 rounded-lg"
-                          onClick={() => setServicesOpen(false)}
-                        >
-                          {subItem.group && <span className="block text-xs uppercase tracking-wide text-primary-dark mb-1">{subItem.group}</span>}{subItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </Link>
-              )
-            ))}
+  return <nav ref={nav} aria-label={language === 'fr' ? 'Navigation principale' : 'Main navigation'} className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between h-16 gap-4">
+        <Link href="/" aria-label={language === 'fr' ? 'Mounia Mikou, accueil' : 'Mounia Mikou, home'} className="w-16 h-16 shrink-0" onClick={close}><Image src="/Logo blanc_page-0001.jpg" alt="Mounia Mikou" width={64} height={64} /></Link>
+        <div className="hidden xl:flex items-center justify-end gap-2 flex-1">
+          {before.map(item => navLink(item))}
+          <div className="relative">
+            <button ref={trigger} type="button" aria-expanded={corporateOpen} aria-controls={id+'-desktop-company'} className={style(corporateActive ? pathname : '', 'flex items-center gap-1')} onClick={() => setCorporateOpen(open => !open)} onKeyDown={event => {if (event.key === 'ArrowDown') {event.preventDefault(); setCorporateOpen(true); requestAnimationFrame(() => firstLink.current?.focus());}}}>
+              {labels.corporateGroup}<ChevronDown aria-hidden="true" size={16} className={corporateOpen ? 'rotate-180' : ''} />
+            </button>
+            {corporateOpen && <div id={id+'-desktop-company'} className="absolute left-0 mt-2 rounded-lg border border-gray-200 bg-white shadow-lg w-80 p-2">
+              {companyPages.map((item, index) => <Link key={item.href} ref={index === 0 ? firstLink : undefined} href={item.href} aria-current={pathname === item.href ? 'page' : undefined} onClick={close} className={style(item.href, 'block px-4 py-3')}>{item.label}</Link>)}
+            </div>}
           </div>
-
-          {/* Language and Contact Button */}
-          <div className="hidden md:flex items-center space-x-6">
-            <LanguageSelector />
-            <Link
-              href="/contact"
-              className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              {t.nav.contact}
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button aria-label={language === 'fr' ? 'Menu de navigation' : 'Navigation menu'} aria-expanded={isOpen} className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
-          </button>
+          {after.map(item => navLink(item))}
+          <LanguageSelector />
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                item.submenu ? (
-                  <div key={item.label}>
-                    <button
-                      className="w-full text-left px-3 py-2 flex justify-between text-gray-600 hover:text-primary transition-colors"
-                      aria-expanded={servicesOpen}
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    >
-                      {item.label} <ChevronDown className="w-4 h-4" />
-                    </button>
-                    {servicesOpen && (
-                      <div className="ml-4 space-y-1">
-                        {item.submenu.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="block px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setServicesOpen(false);
-                            }}
-                          >
-                            {subItem.group && <span className="block text-xs uppercase tracking-wide text-primary-dark mb-1">{subItem.group}</span>}{subItem.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="block px-3 py-2 text-gray-600 hover:text-primary transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              ))}
-              <div className="px-2 py-2">
-                <Link
-                  href="/contact"
-                  className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors"
-                >
-                  {t.nav.contact}
-                </Link>
-              </div>
-              <div className="px-3 py-2">
-                <LanguageSelector />
-              </div>
-            </div>
-          </motion.div>
-        )}
+        <div className="flex xl:hidden items-center gap-3"><LanguageSelector /><button type="button" aria-label={language === 'fr' ? 'Menu de navigation' : 'Navigation menu'} aria-expanded={mobileOpen} aria-controls={id+'-mobile'} onClick={() => {setMobileOpen(open => !open); setCorporateOpen(false);}} className="p-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">{mobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div>
       </div>
+      {mobileOpen && <div id={id+'-mobile'} className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto py-3">
+        {before.map(item => navLink(item, true))}
+        <button type="button" aria-expanded={corporateOpen} aria-controls={id+'-mobile-company'} onClick={() => setCorporateOpen(open => !open)} className={style(corporateActive ? pathname : '', 'w-full flex justify-between items-center px-3 py-3 text-left')}>{labels.corporateGroup}<ChevronDown aria-hidden="true" size={18} className={corporateOpen ? 'rotate-180' : ''} /></button>
+        {corporateOpen && <div id={id+'-mobile-company'} className="ml-5 border-l border-gray-200 pl-3">{companyPages.map(item => navLink(item, true))}</div>}
+        {after.map(item => navLink(item, true))}
+      </div>}
     </div>
-  );
+  </nav>;
 }
