@@ -1,6 +1,7 @@
 import 'server-only';
 import { cache } from "react";
 import { client } from "./client";
+import { editorialFetchOptions } from "../policy.cjs";
 
 // Apply the site's typography preference to displayed CMS text, keeping URLs intact.
 function normalizeTypography(value, key) {
@@ -44,7 +45,7 @@ export const getBlogPost = cache(async (slug) => {
       seo { en, fr }
     }
   `;
-  return normalizeTypography(await client.withConfig({ useCdn: false }).fetch(query, { slug }, { next: { revalidate: 3600 } }));
+  return normalizeTypography(await client.withConfig({ useCdn: false }).fetch(query, { slug }, editorialFetchOptions(process.env.VERCEL_ENV)));
 });
 
 
@@ -57,6 +58,6 @@ export const getBlogPosts = cache(async () => {
       "hasFrench": defined(title.fr) && count(body.fr) > 0
     }`,
     {},
-    { next: { revalidate: 3600 } }
+    editorialFetchOptions(process.env.VERCEL_ENV)
   ));
 });

@@ -10,3 +10,9 @@ exports.workingSanityConfig = function workingSanityConfig(projectId, dataset) {
   }
   return { projectId: selectedProject, dataset: selectedDataset };
 }
+
+// Studio edits must appear on the private preview at the next page request.
+// Preserve the existing production caching policy.
+exports.editorialFetchOptions = function editorialFetchOptions(environment) {
+  return environment === 'production' ? { next: { revalidate: 3600 } } : { cache: 'no-store' };
+};
