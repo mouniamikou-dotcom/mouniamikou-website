@@ -18,6 +18,7 @@ export default function Navbar() {
   const [corporateOpen, setCorporateOpen] = useState(false);
   const nav = useRef(null);
   const trigger = useRef(null);
+  const mobileTrigger = useRef(null);
   const firstLink = useRef(null);
   const id = useId();
   const corporateActive = ['/business-creation-portugal', '/corporate-legal-services-portugal'].includes(pathname);
@@ -29,11 +30,21 @@ export default function Navbar() {
   useEffect(() => { setMobileOpen(false); setCorporateOpen(false); }, [pathname]);
   useEffect(() => {
     const outside = event => { if (!nav.current?.contains(event.target)) setCorporateOpen(false); };
-    const escape = event => { if (event.key === 'Escape') {setCorporateOpen(false); trigger.current?.focus();} };
+    const escape = event => {
+      if (event.key !== 'Escape') return;
+      if (mobileOpen) {
+        setMobileOpen(false);
+        setCorporateOpen(false);
+        mobileTrigger.current?.focus();
+      } else if (corporateOpen) {
+        setCorporateOpen(false);
+        trigger.current?.focus();
+      }
+    };
     document.addEventListener('pointerdown', outside);
     document.addEventListener('keydown', escape);
     return () => {document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape);};
-  }, []);
+  }, [mobileOpen, corporateOpen]);
 
   const style = (href, extra = '') => 'rounded-md px-2 py-2 text-sm font-medium transition-colors hover:text-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary '+(pathname === href ? 'text-primary-dark underline underline-offset-8 ' : 'text-gray-700 ')+extra;
   const navLink = (item, mobile = false) => <Link key={item.href} href={item.href} aria-current={pathname === item.href ? 'page' : undefined} onClick={close} className={style(item.href, mobile ? 'block px-3 py-3' : '')}>{item.label}</Link>;
@@ -55,7 +66,7 @@ export default function Navbar() {
           {after.map(item => navLink(item))}
           <LanguageSelector />
         </div>
-        <div className="flex xl:hidden items-center gap-3"><LanguageSelector /><button type="button" aria-label={language === 'fr' ? 'Menu de navigation' : 'Navigation menu'} aria-expanded={mobileOpen} aria-controls={id+'-mobile'} onClick={() => {setMobileOpen(open => !open); setCorporateOpen(false);}} className="p-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">{mobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div>
+        <div className="flex xl:hidden items-center gap-3"><LanguageSelector /><button ref={mobileTrigger} type="button" aria-label={language === 'fr' ? 'Menu de navigation' : 'Navigation menu'} aria-expanded={mobileOpen} aria-controls={id+'-mobile'} onClick={() => {setMobileOpen(open => !open); setCorporateOpen(false);}} className="p-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">{mobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div>
       </div>
       {mobileOpen && <div id={id+'-mobile'} className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto py-3">
         {before.map(item => navLink(item, true))}
