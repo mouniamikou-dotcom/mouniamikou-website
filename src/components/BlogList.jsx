@@ -82,6 +82,7 @@ const BlogList = ({ initialPosts, headingLevel = "h2" }) => {
                   src={blog.mainImage.asset.url}
                   alt={blog.title}
                   fill
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, (max-width: 1535px) 33vw, 512px"
                   className="object-cover"
                 />
               </div>

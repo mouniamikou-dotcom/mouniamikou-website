@@ -29,6 +29,7 @@ export default function LanguageSelector() {
           src={currentOption.flag}
           alt={currentOption.alt}
           fill
+          sizes="24px"
           className="object-cover rounded-sm hover:opacity-80 transition-opacity"
           priority
         />

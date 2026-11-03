@@ -90,7 +90,7 @@ export default async function EditorialPage({ subject, children }) {
   const home = subject === 'home';
   return <>
     <header className="relative bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-14 sm:pt-36 sm:pb-20">
-      {home && <Image src="/portugal-4828134_1280.jpg" alt="" fill className="object-cover opacity-10" priority />}
+      {home && <Image src="/portugal-4828134_1280.jpg" alt="" fill sizes="100vw" className="object-cover opacity-10" priority />}
       <div className={"relative max-w-7xl mx-auto px-5 sm:px-8 grid gap-10 items-center "+(pictures[subject] ? "lg:grid-cols-[1.3fr_1fr]" : "") }>
         <div className="space-y-5 text-gray-700 leading-relaxed">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">{page.title}</h1>
@@ -98,7 +98,7 @@ export default async function EditorialPage({ subject, children }) {
           <Blocks blocks={page.intro.blocks} subject={subject} />
           {home && <p><a className="underline underline-offset-4 text-primary-dark" href="https://calendly.com/mouniamikou/discovery-call">{language === 'fr' ? 'Réserver un appel découverte gratuit' : 'Book a free discovery call'}</a></p>}
         </div>
-        {pictures[subject] && <Image src={pictures[subject]} alt={subject === 'home' || subject === 'about' ? 'Mounia Mikou' : ''} width={900} height={900} className="rounded-2xl shadow-xl w-full max-w-lg mx-auto max-h-[560px] object-cover" priority />}
+        {pictures[subject] && <Image src={pictures[subject]} alt={subject === 'home' || subject === 'about' ? 'Mounia Mikou' : ''} width={900} height={900} sizes="(max-width: 551px) calc(100vw - 40px), (max-width: 1023px) 512px, (max-width: 1279px) 42vw, 512px" className="rounded-2xl shadow-xl w-full max-w-lg mx-auto max-h-[560px] object-cover" priority />}
       </div>
     </header>
     {page.sections.map((section, index) => <Fragment key={index}>{home && index === page.sections.length - 1 && children}<section id={home && index === 0 ? 'services' : undefined} className={index % 2 ? 'py-12 sm:py-16 bg-gray-50' : 'py-12 sm:py-16 bg-white'}>
