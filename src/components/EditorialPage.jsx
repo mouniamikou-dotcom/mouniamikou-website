@@ -43,7 +43,7 @@ function DirectoryItem({ text }) {
   const href = /Paris/i.test(text)
     ? 'https://www.avocatparis.org/annuaire/avocat?cnbf=CEC346A8rTbjqcZT5F/0ow=='
     : 'https://portal.oa.pt/advogados/pesquisa-de-advogados/';
-  return <a href={href} className="text-primary-dark underline underline-offset-4">{ /Ordem|Portuguese/i.test(text) ? (/Consulter/i.test(text) ? 'Rechercher mon inscription dans l’annuaire de l’Ordem dos Advogados' : 'Search the Ordem dos Advogados directory') : <Inline text={text} />}</a>;
+  return <a href={href} className="text-primary-dark underline underline-offset-4">{ /Ordem|Portuguese/i.test(text) ? (/Consulter/i.test(text) ? 'Rechercher mon enregistrement dans l’annuaire de l’Ordem dos Advogados' : 'Search the Ordem dos Advogados directory') : <Inline text={text} />}</a>;
 }
 
 function Blocks({ blocks, subject }) {

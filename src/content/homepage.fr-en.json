@@ -1,0 +1,215 @@
+{
+  "fr": {
+    "nav": [
+      "Domaines d’intervention",
+      "Mon parcours",
+      "Articles",
+      "Contact"
+    ],
+    "hero": "Avocate en droit des sociétés et immobilier au Portugal",
+    "intro": [
+      "J’accompagne les entrepreneurs, dirigeants et investisseurs dans la création et la vie de leurs sociétés, ainsi que dans leurs transactions immobilières au Portugal.",
+      "Je vous apporte un conseil adapté à vos objectifs et aux enjeux de votre projet."
+    ],
+    "cta": "Présenter ma demande",
+    "secondary": "Découvrir mes domaines d’intervention",
+    "location": "LISBONNE · FRANÇAIS & ANGLAIS",
+    "services": "Quel accompagnement recherchez-vous ?",
+    "corporate": "Droit des sociétés",
+    "corptext": [
+      "Créer votre société, organiser les relations entre associés, négocier vos contrats ou accompagner le développement de votre entreprise.",
+      "J’interviens pour des opérations ponctuelles et pour le suivi juridique des sociétés au Portugal."
+    ],
+    "corplinks": [
+      "Créer une société au Portugal",
+      "Accompagner une société existante"
+    ],
+    "property": "Immobilier",
+    "propertytext": [
+      "Acheter ou vendre un bien au Portugal implique des engagements importants.",
+      "Je vous accompagne dans les vérifications juridiques, la négociation des contrats et la préparation de la transaction, avec une représentation à distance lorsque les conditions le permettent."
+    ],
+    "propertylink": "Acheter ou vendre un bien au Portugal",
+    "immigration": "Immigration, résidence et nationalité",
+    "immigrationtext": [
+      "Vous souhaitez vous installer au Portugal, obtenir ou renouveler un titre de séjour, ou demander la nationalité portugaise ?",
+      "J’accompagne les ressortissants européens et non européens dans les démarches adaptées à leur situation."
+    ],
+    "immigrationlink": "Préparer mes démarches au Portugal",
+    "bio": "Une expérience internationale au service de vos projets",
+    "biotext": [
+      "Avant de développer mon activité à Lisbonne, j’ai exercé au sein de cabinets d’avocats internationaux à Paris, notamment Clifford Chance, Allen & Overy et Hogan Lovells.",
+      "Cette expérience nourrit mon approche : comprendre vos objectifs, identifier les enjeux juridiques et vous conseiller en tenant compte des réalités de votre projet.",
+      "En tant qu’avocate indépendante, je privilégie une relation directe avec mes clients. Lorsque le dossier le nécessite, je coordonne mon intervention avec les autres professionnels concernés."
+    ],
+    "markers": [
+      "Basée à Lisbonne",
+      "Avocate inscrite au Barreau de Paris et enregistrée au Barreau de Lisbonne.",
+      "Conseil en français et en anglais",
+      "Vous échangez directement avec moi"
+    ],
+    "biolink": "Découvrir mon parcours",
+    "start": "Comment commencer ?",
+    "steps": [
+      [
+        "Vous me présentez votre besoin",
+        "Vous décrivez brièvement votre situation et les questions pour lesquelles vous recherchez un accompagnement."
+      ],
+      [
+        "Nous précisons l’intervention",
+        "Selon votre demande, nous déterminons la suite adaptée : consultation juridique ou définition d’une mission d’accompagnement."
+      ],
+      [
+        "Le cadre de la mission est défini",
+        "Le périmètre de l’intervention et les honoraires sont précisés avant le début de la mission."
+      ]
+    ],
+    "request": "Présenter ma demande",
+    "booking": "Vous préférez prendre rendez-vous ?",
+    "free": "Appel découverte gratuit",
+    "freetext": "Un premier échange pour présenter votre besoin et déterminer si une intervention peut être envisagée. Cet échange ne constitue pas une consultation juridique.",
+    "freelink": "Réserver un appel découverte",
+    "paid": "Consultation juridique payante",
+    "paidtext": "Un rendez-vous consacré à l’analyse de votre situation et à vos questions juridiques, selon les modalités indiquées lors de la réservation.",
+    "paidlink": "Réserver une consultation",
+    "articles": "Comprendre les enjeux juridiques de vos projets au Portugal",
+    "articleintro": "Retrouvez mes articles sur la vie des sociétés, l’immobilier et les questions juridiques liées à vos projets au Portugal.",
+    "read": "Lire l’article",
+    "all": "Voir tous les articles",
+    "final": "Parlons de votre besoin juridique",
+    "finaltext": [
+      "Vous recherchez un accompagnement pour votre société, une transaction immobilière ou vos démarches au Portugal ?",
+      "Présentez-moi votre situation afin que nous puissions déterminer les modalités d’un accompagnement adapté."
+    ],
+    "legal": [
+      "Conditions d’utilisation",
+      "Politique de confidentialité",
+      "Cookies"
+    ],
+    "paths": {
+      "formation": "/fr/creation-entreprise-portugal",
+      "corporate": "/fr/accompagnement-juridique-societes-portugal",
+      "property": "/fr/immobilier-portugal",
+      "immigration": "/fr/installation-portugal",
+      "about": "/fr/a-propos",
+      "articles": "/fr/articles",
+      "contact": "/fr/contact",
+      "terms": "/fr/conditions-utilisation",
+      "privacy": "/fr/confidentialite",
+      "cookies": "/fr/cookies"
+    },
+    "category": {
+      "business": "Société",
+      "tax": "Fiscalité"
+    }
+  },
+  "en": {
+    "nav": [
+      "Areas of practice",
+      "My background",
+      "Articles",
+      "Contact"
+    ],
+    "hero": "Corporate and Real Estate Lawyer in Portugal",
+    "intro": [
+      "I advise entrepreneurs, company directors and investors on establishing and running their companies, as well as on their real estate transactions in Portugal.",
+      "I provide advice tailored to your objectives and the legal issues surrounding your project."
+    ],
+    "cta": "Submit my enquiry",
+    "secondary": "Explore my areas of practice",
+    "location": "LISBON · FRENCH & ENGLISH",
+    "services": "What legal support do you need?",
+    "corporate": "Corporate law",
+    "corptext": [
+      "Set up your company, structure shareholder relationships, negotiate contracts or support the development of your business.",
+      "I assist with specific transactions and provide ongoing legal support for companies in Portugal."
+    ],
+    "corplinks": [
+      "Set up a company in Portugal",
+      "Support for an existing company"
+    ],
+    "property": "Real estate",
+    "propertytext": [
+      "Buying or selling property in Portugal involves significant commitments.",
+      "I assist with legal due diligence, contract negotiations and preparation of the transaction, including remote representation where circumstances allow."
+    ],
+    "propertylink": "Buy or sell property in Portugal",
+    "immigration": "Immigration, residency and citizenship",
+    "immigrationtext": [
+      "Are you planning to move to Portugal, obtain or renew a residence permit, or apply for Portuguese citizenship?",
+      "I assist EU and non-EU nationals with procedures suited to their circumstances."
+    ],
+    "immigrationlink": "Plan your next steps in Portugal",
+    "bio": "International experience supporting your projects",
+    "biotext": [
+      "Before establishing my practice in Lisbon, I worked at international law firms in Paris, including Clifford Chance, Allen & Overy and Hogan Lovells.",
+      "This experience informs my approach: understanding your objectives, identifying the legal issues and advising you with the practical realities of your project in mind.",
+      "As an independent lawyer, I prioritise a direct relationship with my clients. When a matter requires it, I coordinate my work with the other professionals involved."
+    ],
+    "markers": [
+      "Based in Lisbon",
+      "Lawyer admitted to the Paris Bar and registered with the Lisbon Bar.",
+      "Legal advice in French and English",
+      "You communicate directly with me"
+    ],
+    "biolink": "Explore my background",
+    "start": "How do we get started?",
+    "steps": [
+      [
+        "You describe your needs",
+        "You briefly outline your situation and the questions for which you are seeking legal support."
+      ],
+      [
+        "We clarify the support required",
+        "Depending on your enquiry, we determine the appropriate next step: a legal consultation or defining an advisory engagement."
+      ],
+      [
+        "We agree the terms of the engagement",
+        "The scope of the work and the fees are specified before the engagement begins."
+      ]
+    ],
+    "request": "Submit my enquiry",
+    "booking": "Would you prefer to book a meeting?",
+    "free": "Free discovery call",
+    "freetext": "An initial conversation to outline your needs and determine whether I may be able to assist. This conversation is not a legal consultation.",
+    "freelink": "Book a discovery call",
+    "paid": "Paid legal consultation",
+    "paidtext": "A meeting dedicated to analysing your situation and answering your legal questions, on the terms indicated when booking.",
+    "paidlink": "Book a legal consultation",
+    "articles": "Understand the legal issues behind your projects in Portugal",
+    "articleintro": "Read my articles on company matters, real estate and the legal questions surrounding your projects in Portugal.",
+    "read": "Read the article",
+    "all": "View all articles",
+    "final": "Let’s discuss your legal needs",
+    "finaltext": [
+      "Are you seeking support for your company, a real estate transaction or your next steps in Portugal?",
+      "Tell me about your situation so that we can determine the appropriate legal support."
+    ],
+    "legal": [
+      "Terms of use",
+      "Privacy Policy",
+      "Cookies"
+    ],
+    "paths": {
+      "formation": "/business-creation-portugal",
+      "corporate": "/corporate-legal-services-portugal",
+      "property": "/real-estate",
+      "immigration": "/settling-in-portugal",
+      "about": "/about",
+      "articles": "/blogs",
+      "contact": "/contact",
+      "terms": "/terms",
+      "privacy": "/privacy",
+      "cookies": "/cookies"
+    },
+    "category": {
+      "business": "Corporate",
+      "tax": "Tax"
+    }
+  },
+  "articleSlugs": [
+    "lda-or-trabalhador-independente-which-status-fits-your-activity-in-portugal",
+    "5-myths-about-setting-up-a-company-in-portugal",
+    "ifici-portugal-2026"
+  ]
+}

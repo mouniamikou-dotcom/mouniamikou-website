@@ -40,6 +40,7 @@ for (let start = 0; start < urls.length; start += 4) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
+    assert.doesNotMatch(html, /double inscription|barreaux de Paris et de Lisbonne|Paris and Lisbon Bars|Lawyer at the Paris and Lisbon Bar/i, path + ' professional status distinguishes Paris admission and Lisbon registration');
     assert.ok(new RegExp(`<html[^>]*lang="${language}"`).test(html), path + ' initial language');
     const links = [...html.matchAll(/<link\b[^>]*>/g)].map(match => attributes(match[0]));
     assert.equal(new URL(links.find(link => link.rel === 'canonical')?.href).href, new URL(url).href, path);

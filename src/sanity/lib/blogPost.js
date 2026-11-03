@@ -7,7 +7,7 @@ import { addArticleLinks } from "./article-links.cjs";
 // Apply the site's typography preference to displayed CMS text, keeping URLs intact.
 function normalizeTypography(value, key) {
   if (["url", "href", "slug", "_id", "_key", "_ref"].includes(key)) return value;
-  if (typeof value === "string") return value.replace(/[\u2013\u2014]/g, "-").replace(/trabalhador indenpendente/gi, "trabalhador independente");
+  if (typeof value === "string") return value.replace(/[\u2013\u2014]/g, "-").replace(/trabalhador indenpendente/gi, "trabalhador independente").replace(/Lawyer at the Paris and Lisbon Bar\b/g, "Lawyer admitted to the Paris Bar and registered with the Lisbon Bar.");
   if (Array.isArray(value)) return value.map(item => normalizeTypography(item));
   if (value && typeof value === "object") {
     return Object.fromEntries(Object.entries(value).map(([name, item]) => [name, normalizeTypography(item, name)]));

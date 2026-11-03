@@ -1,5 +1,6 @@
 import editorialFr from '@/content/editorial.fr.json';
 import editorialEn from '@/content/editorial.en.json';
+import homepage from '@/content/homepage.fr-en.json';
 import { headers } from 'next/headers';
 import { englishPath, localizedPath, pageAlternates, SITE_URL } from './routes';
 
@@ -9,12 +10,12 @@ export async function getRequestLanguage() {
 
 const pages = {
   '/': {
-    en: ['Mounia Mikou | Lawyer in Lisbon, legal advice in English', 'Lawyer admitted to the Paris and Lisbon Bars. Legal guidance in English and French for relocation, property purchases and business formation in Portugal.'],
-    fr: ['Mounia Mikou | Avocate à Lisbonne, accompagnement en français', 'Avocate inscrite aux barreaux de Paris et de Lisbonne. Accompagnement en français et en anglais pour s’installer, acheter un bien ou entreprendre au Portugal.'],
+    en: ['Mounia Mikou | Lawyer in Lisbon, legal advice in English', 'Lawyer admitted to the Paris Bar and registered with the Lisbon Bar. Legal guidance in English and French for relocation, property purchases and business formation in Portugal.'],
+    fr: ['Mounia Mikou | Avocate à Lisbonne, accompagnement en français', 'Avocate inscrite au Barreau de Paris et enregistrée au Barreau de Lisbonne. Accompagnement en français et en anglais pour s’installer, acheter un bien ou entreprendre au Portugal.'],
   },
   '/about': {
-    en: ['Meet Mounia Mikou | Lawyer admitted to the Paris and Lisbon Bars', 'Meet Mounia Mikou, a lawyer admitted to the Paris and Lisbon Bars, advising individuals and entrepreneurs in Portugal in English and French.'],
-    fr: ['Mounia Mikou | Avocate aux barreaux de Paris et de Lisbonne', 'Découvrez le parcours de Mounia Mikou, avocate aux barreaux de Paris et de Lisbonne, et son accompagnement au Portugal en français et en anglais.'],
+    en: ['Meet Mounia Mikou | Lawyer admitted to the Paris Bar and registered with the Lisbon Bar', 'Meet Mounia Mikou, a lawyer admitted to the Paris Bar and registered with the Lisbon Bar, advising individuals and entrepreneurs in Portugal in English and French.'],
+    fr: ['Mounia Mikou | Avocate inscrite au Barreau de Paris et enregistrée au Barreau de Lisbonne', 'Découvrez le parcours de Mounia Mikou, avocate inscrite au Barreau de Paris et enregistrée au Barreau de Lisbonne, et son accompagnement au Portugal en français et en anglais.'],
   },
   '/settling-in-portugal': {
     en: ['Settling in Portugal | Relocation Lawyer | Mounia Mikou', 'Legal support in English for moving to Portugal: visas, residence, NIF and administrative procedures. Discuss your project with Mounia Mikou.'],
@@ -58,7 +59,7 @@ export async function requestMetadata() {
   let copy = (pages[path] || contact || pages['/'])[language] || pages['/'].en;
   const subject = editorialSubjects[path];
   if (subject) {
-    const page = (language === 'fr' ? editorialFr : editorialEn)[subject];
+    const page = subject === 'home' ? {title: homepage[language].hero} : (language === 'fr' ? editorialFr : editorialEn)[subject];
     copy = [page.title + ' | Mounia Mikou', pages[path][language][1]];
   }
   const url = SITE_URL + localizedPath(path, language);
