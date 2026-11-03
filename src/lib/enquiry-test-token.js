@@ -1,6 +1,7 @@
-// Loaded only after submission in an explicitly enabled preview test window.
+// Loaded only after submission when the server enables the appropriate circuit.
 let loading;
-export async function enquiryTestToken() {
+export async function enquiryTestToken(action = 'enquiry_test') {
+ if(!['enquiry_test','enquiry'].includes(action))throw Error('Invalid anti-spam action');
  const key=process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
  if(!key)throw Error('Anti-spam unavailable');
  if(!window.grecaptcha) {
@@ -18,6 +19,6 @@ export async function enquiryTestToken() {
  }
  return new Promise((resolve,reject)=>{
   const timeout=setTimeout(()=>reject(Error('Anti-spam timeout')),10000);
-  window.grecaptcha.ready(()=>window.grecaptcha.execute(key,{action:'enquiry_test'}).then(token=>{clearTimeout(timeout);resolve(token);},error=>{clearTimeout(timeout);reject(error);}));
+  window.grecaptcha.ready(()=>window.grecaptcha.execute(key,{action}).then(token=>{clearTimeout(timeout);resolve(token);},error=>{clearTimeout(timeout);reject(error);}));
  });
 }

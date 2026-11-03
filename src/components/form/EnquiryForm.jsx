@@ -15,12 +15,14 @@ export default function EnquiryForm({ initialService = '' }) {
   const [service, setService] = useState(enquiryServices.includes(initialService) ? initialService : '');
   const [notice, setNotice] = useState(false);
   const [errors, setErrors] = useState({});
-  const [testMode, setTestMode] = useState(false);
+  const [sendingEnabled, setSendingEnabled] = useState(false);
+  const [publicMode, setPublicMode] = useState(false);
+  const requestId = useRef(null);
   const [delivery, setDelivery] = useState('idle');
   const submitting = useRef(false);
   useEffect(() => {
     let active = true;
-    fetch('/api/enquiry', {cache:'no-store'}).then(response => response.ok ? response.json() : null).then(config => {if (active) setTestMode(config?.enabled === true);}).catch(() => {});
+    fetch('/api/enquiry', {cache:'no-store'}).then(response => response.ok ? response.json() : null).then(config => {if (active) {setSendingEnabled(config?.enabled === true);setPublicMode(config?.mode === 'public');}}).catch(() => {});
     return () => {active = false;};
   }, []);
   const id = useId();
@@ -41,17 +43,18 @@ export default function EnquiryForm({ initialService = '' }) {
     if (!String(data.get('description') || '').trim()) next.description = copyErrors.description;
     if (!data.get('privacyAccepted')) next.privacyAccepted = copyErrors.privacy;
     setErrors(next);
-    setNotice(!Object.keys(next).length && !testMode);
+    setNotice(!Object.keys(next).length && !sendingEnabled);
     if (Object.keys(next).length) event.currentTarget.elements.namedItem(Object.keys(next)[0])?.focus();
-    if (Object.keys(next).length || !testMode) return;
+    if (Object.keys(next).length || !sendingEnabled) return;
     submitting.current = true;
     setDelivery('sending');
     try {
-      const recaptchaToken = await enquiryTestToken();
-      const response = await fetch('/api/enquiry', {method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(20000),body:JSON.stringify({language,fullName:data.get('fullName'),email:data.get('email'),phone:data.get('phone'),service,description:data.get('description'),additionalInfo:data.get('additionalInfo'),privacyAccepted:Boolean(data.get('privacyAccepted')),answers,website:data.get('website'),recaptchaToken})});
+      if (!requestId.current) requestId.current = crypto.randomUUID();
+      const recaptchaToken = await enquiryTestToken(publicMode ? 'enquiry' : 'enquiry_test');
+      const response = await fetch('/api/enquiry', {method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(20000),body:JSON.stringify({requestId:requestId.current,language,fullName:data.get('fullName'),email:data.get('email'),phone:data.get('phone'),service,description:data.get('description'),additionalInfo:data.get('additionalInfo'),privacyAccepted:Boolean(data.get('privacyAccepted')),answers,website:data.get('website'),recaptchaToken})});
       const result = await response.json();
       if (response.ok && result.success === true) setDelivery('success');
-      else if (result.code === 'PREVIEW_DISABLED') {setNotice(true);setTestMode(false);setDelivery('idle');}
+      else if (result.code === 'PREVIEW_DISABLED') {setNotice(true);setSendingEnabled(false);setDelivery('idle');}
       else {setDelivery('failure');if(result.errors)setErrors(result.errors);}
     } catch {setDelivery('failure');}
     finally {submitting.current = false;}
@@ -62,7 +65,7 @@ export default function EnquiryForm({ initialService = '' }) {
       <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">{copy.title}</h1>
       <form noValidate onSubmit={handleSubmit} className="space-y-6 rounded-2xl border border-gray-200 bg-white p-5 sm:p-8">
         <div aria-hidden="true" className="hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-        {testMode && <p className="rounded-lg bg-amber-50 p-4">{language === 'fr' ? 'Recette de préproduction : utiliser uniquement les données fictives convenues.' : 'Preview acceptance test: use only the agreed fictitious test data.'}</p>}
+        {sendingEnabled && !publicMode && <p className="rounded-lg bg-amber-50 p-4">{language === 'fr' ? 'Recette de préproduction : utiliser uniquement les données fictives convenues.' : 'Preview acceptance test: use only the agreed fictitious test data.'}</p>}
         {Object.keys(errors).length > 0 && <div role="alert" className="rounded-lg border border-red-300 bg-red-50 p-4"><ul>{Object.entries(errors).map(([key, message]) => <li key={key}><a href={'#'+id+'-'+({fullName:'name', privacyAccepted:'privacy'}[key] || key)} className="underline">{message}</a></li>)}</ul></div>}
         <div><label htmlFor={id+'-name'} className="font-medium">{copy.name}</label><input id={id+'-name'} name="fullName" aria-invalid={Boolean(errors.fullName)} autoComplete="name" placeholder={copy.namePlaceholder} required maxLength={200} className={fieldClass} /></div>
         <div><label htmlFor={id+'-email'} className="font-medium">{copy.email}</label><input id={id+'-email'} name="email" aria-invalid={Boolean(errors.email)} type="email" autoComplete="email" placeholder={copy.emailPlaceholder} required maxLength={254} className={fieldClass} /></div>

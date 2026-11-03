@@ -2,6 +2,7 @@ const legacyBlogPaths = require('./src/i18n/legacy-paths.json');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    env: { NEXT_PUBLIC_DEPLOYMENT_ENV: process.env.VERCEL_ENV || 'development' },
     images: {
         remotePatterns: [
           {

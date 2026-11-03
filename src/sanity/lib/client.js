@@ -8,5 +8,5 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  ...privateReadConfig(process.env.SANITY_API_READ_TOKEN),
+  ...privateReadConfig(process.env.SANITY_API_READ_TOKEN, dataset, process.env.VERCEL_ENV),
 });
